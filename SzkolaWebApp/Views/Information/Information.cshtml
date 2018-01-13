@@ -1,0 +1,51 @@
+﻿@section styles {
+    @Styles.Render("~/Content/css/informacje/informacje.css")
+}
+
+<!-- Site content -->
+<section class="site-element site-content content">
+    <h2>Informacje na rok szkolny 2017/2018</h2>
+    <div class="info-wrapper" id="info-wrapper">
+        <a class="info-link" id="calendar-link" href="@Url.Action("YearCalendar", "Information")">
+            <img class="info-icon" src="~/Content/images/kalendarz.png">
+            <div class="info-caption">Kalendarz roku szkolnego</div>
+        </a>
+        <a class="info-link" id="events-link" href="@Url.Action("Events", "Information")">
+            <img class="info-icon" src="~/Content/images/uroczystosci.png">
+            <div class="info-caption">Uroczystości</div>
+        </a>
+        <a class="info-link" id="schedules-link" href="@Url.Action("Educators", "Information")">
+            <img class="info-icon" src="~/Content/images/plany.png">
+            <div class="info-caption">Plany lekcji</div>
+        </a>
+        <a class="info-link" id="bells-link" href="@Url.Action("BellsSchedule", "Information")">
+            <img class="info-icon" src="~/Content/images/dzwonki.png">
+            <div class="info-caption">Rozkład dzwonków</div>
+        </a>
+        <a class="info-link" id="employees-link" href="@Url.Action("Employees", "Information")">
+            <img class="info-icon" src="~/Content/images/pracownicy.png">
+            <div class="info-caption">Pracownicy szkoły</div>
+        </a>
+        <a class="info-link" id="bus-link" href="@Url.Action("BusSchedule", "Information")">
+            <img class="info-icon" src="~/Content/images/autobus.png">
+            <div class="info-caption">Rozkład jazdy autobusu</div>
+        </a>
+        <a class="info-link" id="meetings-link" href="@Url.Action("Meetings", "Information")">
+            <img class="info-icon" src="~/Content/images/spotkania.png">
+            <div class="info-caption">Spotkania z rodzicami</div>
+        </a>
+        <a class="info-link" id="days-off-link" href="@Url.Action("Holidays", "Information")">
+            <img class="info-icon" src="~/Content/images/dniwolne.png">
+            <div class="info-caption">Dni wolne</div>
+        </a>
+        <a class="info-link" id="educators-link" href="@Url.Action("Educators", "Information")">
+            <img class="info-icon" src="~/Content/images/wychowawcy.png">
+            <div class="info-caption">Wychowawcy klas</div>
+        </a>
+    </div>
+</section>
+
+
+@section scripts {
+    @Scripts.Render("~/Scripts/informacje.js")
+}

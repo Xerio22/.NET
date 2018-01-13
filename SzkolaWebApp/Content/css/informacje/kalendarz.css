@@ -1,0 +1,10 @@
+
+.cal-left {
+    margin-left: 5em;
+    text-align: right;
+    float: left;
+}
+
+.cal-right {
+    float: right;
+}

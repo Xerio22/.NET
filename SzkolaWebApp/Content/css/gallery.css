@@ -1,0 +1,96 @@
+.gallery {
+    height: 15em;
+    margin: 2em auto 0 auto;
+    box-sizing: border-box;
+    background-color: rgba(29, 28, 28, 0.15);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.gallery-main-view {
+    height: 100%;
+    position: relative;
+}
+
+.gallery-image {
+    width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.gallery-arrows {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.gallery-arrows i {
+    font-size: 3em;
+    color: white;
+}
+
+.gallery-left-arrow {
+    float: left;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.gallery-right-arrow {
+    float: right;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.gallery-left-arrow, .gallery-right-arrow {
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+.gallery-left-arrow:hover, .gallery-right-arrow:hover {
+    background-color: rgba(19, 19, 19, 0.75);
+    transition: 0.6s;
+}
+
+/* .gallery-miniatures {
+    width: 1000%;
+    height: 5em;
+    overflow: auto;
+} */
+
+.gallery-miniature {
+    width: 10em;
+    height: 5em;
+
+    float: left;
+    margin: .5em .5em .5em 0;
+}
+
+@media only screen and (min-width: 505px){
+    .gallery {
+        height: 25em;
+    }
+}
+
+@media only screen and (min-width: 760px){
+    .gallery {
+        height: 30em;
+    }
+}
+
+@media only screen and (min-width: 1100px){
+    .gallery {
+        height: 35em;
+    }
+}

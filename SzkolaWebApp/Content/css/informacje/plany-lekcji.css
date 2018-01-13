@@ -1,0 +1,13 @@
+
+
+.left, .right {
+    width: 15em;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.content-wrapper img {
+    width: 75%;
+    margin-bottom: .8em;
+}

@@ -1,0 +1,19 @@
+.pracownicy {
+    text-align: center;
+}
+
+.stanowisko {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgba(255, 130, 46, 0.849);
+    margin-bottom: .5em;
+    margin-top: 1.5em;
+}
+
+.stanowisko:first-child {
+    margin-top: 0;
+}
+
+.nauczyciele li {
+    margin: 1em;
+}

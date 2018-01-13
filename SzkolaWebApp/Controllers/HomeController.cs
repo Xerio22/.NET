@@ -4,22 +4,21 @@ namespace SzkolaWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult News()
         {
-            return View();
+            ViewBag.Title = "Aktualności";
+            return View(); // pass title
         }
 
-        public ActionResult About()
+        public ActionResult History()
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.Title = "Historia szkoły";
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.Title = "Kontakt";
             return View();
         }
     }

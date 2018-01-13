@@ -1,43 +1,51 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @Styles.Render("~/Content/css/reset.css")
+    @Styles.Render("~/Content/css/style.css")
+    @RenderSection("styles", required: false)
+    <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <header class="site-element site-header">
+        <h1 class="hidden">Szkoła podstawowa</h1>
+        <div class="header-image"></div>
+        <nav id="nav">
+            <div class="nav-content-wrapper">
+                @if(ViewBag.Title != "Aktualności" &&
+                    ViewBag.Title != "Informacje" &&
+                    ViewBag.Title != "Historia szkoły" &&
+                    ViewBag.Title != "Kontakt")
+                {
+                    ViewBag.Title = "Informacje";
+                }
+
+                <ul>
+                    <li @(ViewBag.Title == "Aktualności" ? "class=nav-active" : "")><a href="@Url.Action("News", "Home")">Aktualności</a></li>
+                    <li @(ViewBag.Title == "Informacje" ? "class=nav-active" : "")><a href="@Url.Action("Information", "Information")">Informacje</a></li>
+                    <li @(ViewBag.Title == "Historia szkoły" ? "class=nav-active" : "")><a href="@Url.Action("History", "Home")">Historia szkoły</a></li>
+                    <li @(ViewBag.Title == "Kontakt" ? "class=nav-active" : "")><a href="@Url.Action("Contact", "Home")">Kontakt</a></li>
                 </ul>
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        </nav>
+    </header>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="site-element site-footer @(ViewBag.Title == "Aktualności" ? "footer-correct-margin" : "")">
+        ©2018 Szkoła podstawowa z oddziałami gimnazjalnymi. Designed by Maciej Sadoś
+    </footer>
+
+    @Scripts.Render("~/Scripts/built-in/jquery-3.2.1.min.js")
+    @Scripts.Render("~/Scripts/sticky-nav.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

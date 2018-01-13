@@ -1,0 +1,24 @@
+
+
+.events-table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+.events-table td, .events-table th {
+    border: 1px solid #ddd;
+    padding: .5em;
+}
+
+.events-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.events-table tr:hover {background-color: #ddd;}
+
+.events-table th {
+    padding-top: .75em;
+    padding-bottom: .75em;
+    text-align: left;
+    background-color: rgba(255, 130, 46, 0.849);
+    /* background-color: #4CAF50; */
+    color: white;
+}

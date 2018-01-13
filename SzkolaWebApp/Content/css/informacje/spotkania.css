@@ -1,0 +1,19 @@
+.spotkania {
+    text-align: center;
+}
+
+.sem, .foot {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgba(255, 130, 46, 0.849);
+    margin-bottom: .5em;
+    margin-top: 1.5em;
+}
+
+.sem:first-child {
+    margin-top: 0;
+}
+
+.foot {
+    font-size: 1em;
+}

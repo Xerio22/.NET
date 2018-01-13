@@ -19,7 +19,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -117,27 +118,71 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\gallery.css" />
+    <Content Include="Content\css\historia.css" />
+    <Content Include="Content\css\informacje\informacje.css" />
+    <Content Include="Content\css\informacje\autobusy.css" />
+    <Content Include="Content\css\informacje\dzwonki.css" />
+    <Content Include="Content\css\informacje\kalendarz.css" />
+    <Content Include="Content\css\informacje\plany-lekcji.css" />
+    <Content Include="Content\css\informacje\pracownicy.css" />
+    <Content Include="Content\css\informacje\spotkania.css" />
+    <Content Include="Content\css\informacje\uroczystosci.css" />
+    <Content Include="Content\css\kontakt.css" />
+    <Content Include="Content\css\reset.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\images\10bcg.png" />
+    <Content Include="Content\images\abc.png" />
+    <Content Include="Content\images\autobus.png" />
+    <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\binding_dark.png" />
+    <Content Include="Content\images\dniwolne.png" />
+    <Content Include="Content\images\dzwonki.png" />
+    <Content Include="Content\images\footer_lodyas.png" />
+    <Content Include="Content\images\img1.jpg" />
+    <Content Include="Content\images\img2.jpg" />
+    <Content Include="Content\images\img3.jpg" />
+    <Content Include="Content\images\img4.jpg" />
+    <Content Include="Content\images\kalendarz.png" />
+    <Content Include="Content\images\kamien.jpg" />
+    <Content Include="Content\images\kaski-1.jpg" />
+    <Content Include="Content\images\kaski-2.jpg" />
+    <Content Include="Content\images\mlodsze.png" />
+    <Content Include="Content\images\plany.png" />
+    <Content Include="Content\images\pracownicy.png" />
+    <Content Include="Content\images\round.png" />
+    <Content Include="Content\images\school.png" />
+    <Content Include="Content\images\spotkania.png" />
+    <Content Include="Content\images\starsze.png" />
+    <Content Include="Content\images\uroczystosci.png" />
+    <Content Include="Content\images\wychowawcy.png" />
+    <Content Include="Content\images\xy.png" />
     <Content Include="Global.asax" />
-    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.2.1.js" />
-    <Content Include="Scripts\jquery-3.2.1.min.js" />
-    <Content Include="Scripts\jquery-3.2.1.slim.js" />
-    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
+    <None Include="Scripts\built-in\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\built-in\jquery-3.2.1.js" />
+    <Content Include="Scripts\built-in\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\built-in\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\built-in\jquery-3.2.1.slim.min.js" />
+    <None Include="Scripts\built-in\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\built-in\jquery.validate.js" />
+    <Content Include="Scripts\built-in\jquery.validate.min.js" />
+    <Content Include="Scripts\built-in\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\built-in\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\built-in\respond.js" />
+    <Content Include="Scripts\built-in\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\built-in\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\built-in\respond.min.js" />
+    <Content Include="Scripts\gallery.js" />
+    <Content Include="Scripts\google-map.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\sticky-nav.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -145,15 +190,18 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\History.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Information\Information.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -161,8 +209,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Scripts\built-in\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\built-in\jquery-3.2.1.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
