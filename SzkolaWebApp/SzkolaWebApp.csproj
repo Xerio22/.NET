@@ -128,13 +128,13 @@
     <Content Include="Content\css\gallery.css" />
     <Content Include="Content\css\history.css" />
     <Content Include="Content\css\informacje\informacje.css" />
-    <Content Include="Content\css\informacje\autobusy.css" />
-    <Content Include="Content\css\informacje\dzwonki.css" />
-    <Content Include="Content\css\informacje\kalendarz.css" />
-    <Content Include="Content\css\informacje\plany-lekcji.css" />
-    <Content Include="Content\css\informacje\pracownicy.css" />
-    <Content Include="Content\css\informacje\spotkania.css" />
-    <Content Include="Content\css\informacje\uroczystosci.css" />
+    <Content Include="Content\css\informacje\bus-schedule.css" />
+    <Content Include="Content\css\informacje\bells-schedule.css" />
+    <Content Include="Content\css\informacje\year-calendar.css" />
+    <Content Include="Content\css\informacje\lesson-schedules.css" />
+    <Content Include="Content\css\informacje\employees.css" />
+    <Content Include="Content\css\informacje\meetings.css" />
+    <Content Include="Content\css\informacje\events.css" />
     <Content Include="Content\css\contact.css" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\style.css" />
@@ -202,6 +202,17 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Information\Information.cshtml" />
+    <Content Include="Views\Information\YearCalendar.cshtml" />
+    <Content Include="Views\Information\Events.cshtml" />
+    <Content Include="Views\Information\LessonSchedules.cshtml" />
+    <Content Include="Views\Information\BellsSchedule.cshtml" />
+    <Content Include="Views\Information\Employees.cshtml" />
+    <Content Include="Views\Information\BusSchedule.cshtml" />
+    <Content Include="Views\Information\Meetings.cshtml" />
+    <Content Include="Views\Information\Holidays.cshtml" />
+    <Content Include="Views\Information\Educators.cshtml" />
+    <Content Include="Views\Information\LessonsScheduleYoungerClasses.cshtml" />
+    <Content Include="Views\Information\LessonsScheduleOlderClasses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

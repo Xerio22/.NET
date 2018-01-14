@@ -1,0 +1,20 @@
+﻿@section styles {
+    @Styles.Render("~/Content/css/informacje/informacje.css")
+    @Styles.Render("~/Content/css/informacje/lesson-schedules.css")
+}
+
+<!-- Site content -->
+<section class="site-element site-content content">
+    <h2>Plany lekcji</h2>
+    <div class="content-wrapper">
+        <a class="left" href="@Url.Action("LessonsScheduleYoungerClasses", "Information")">
+            <img src="~/Content/images/mlodsze.png" alt="mlodsze klasy">
+            <div class="info-caption">Klasy I-IV</div>
+        </a>
+        <a class="right" href="@Url.Action("LessonsScheduleOlderClasses", "Information")">
+            <img src="~/Content/images/starsze.png" alt="starsze klasy">
+            <div class="info-caption">Klasy V-IIIgim</div>
+        </a>
+        <div class="clear"></div>
+    </div>
+</section>
