@@ -20,3 +20,8 @@
     </div>
     <div id="map"></div>
 </section>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/google-map.js")
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7p6uDIt9CH--LVdVYMB13RDci17Az9Ao&callback=initMap"></script>
+}
