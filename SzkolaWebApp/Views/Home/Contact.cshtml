@@ -1,17 +1,22 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@section styles {
+    @Styles.Render("~/Content/css/contact.css")
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<!-- Site content -->
+<section class="site-element site-content content">
+    <h2>Kontakt</h2>
+    <div class="content-wrapper">
+        <div class="top">
+            <div class="contact">
+                Adres: Kaski, ul. Królewska 23 <br><br>
+                96-314 Baranów <br><br>
+                tel./fax 046 856-07-23 <br><br>
+                Dyrektor szkoły – p. Anna Sadoś <br><br>
+                sekretariat@kaski.edu.pl
+            </div>
+            <img id="kamien" src="~/Content/images/kamien.jpg" alt="kamien">
+        </div>
+    </div>
+    <div id="map"></div>
+</section>

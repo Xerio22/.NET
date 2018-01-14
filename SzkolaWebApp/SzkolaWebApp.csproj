@@ -126,7 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\gallery.css" />
-    <Content Include="Content\css\historia.css" />
+    <Content Include="Content\css\history.css" />
     <Content Include="Content\css\informacje\informacje.css" />
     <Content Include="Content\css\informacje\autobusy.css" />
     <Content Include="Content\css\informacje\dzwonki.css" />
@@ -135,7 +135,7 @@
     <Content Include="Content\css\informacje\pracownicy.css" />
     <Content Include="Content\css\informacje\spotkania.css" />
     <Content Include="Content\css\informacje\uroczystosci.css" />
-    <Content Include="Content\css\kontakt.css" />
+    <Content Include="Content\css\contact.css" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\images\10bcg.png" />

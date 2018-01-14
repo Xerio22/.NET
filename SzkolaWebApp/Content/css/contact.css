@@ -7,27 +7,20 @@
 }
 
 .top {
-    height: 13em;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .contact {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-
+    float: left;
     width: 45%;
     box-sizing: border-box;
     text-align: center;
 }
 
 #kamien {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-
+    float: right;
     width: 45%;
     box-sizing: border-box;
 }
