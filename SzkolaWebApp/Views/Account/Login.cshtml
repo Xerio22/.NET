@@ -1,1 +1,28 @@
-﻿
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+<body>
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "todo-form", role = "form" }))
+    {
+        <p>
+            @Html.LabelFor(m => m.login);
+            @Html.TextBoxFor(m => m.login);
+        </p>
+        <p>
+            @Html.LabelFor(m => m.password);
+            @Html.PasswordFor(m => m.password);
+        </p>
+        <p>
+            <input type="submit" value="Zaloguj">
+        </p>
+        <p>
+            @Html.ActionLink("Stwórz konto", "Register", null, new { @class = "unhref" })
+        </p>
+    }
+</body>
+</html>

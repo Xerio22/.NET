@@ -13,7 +13,6 @@ body {
     height: 100%;
     width: 90%;
     margin: 0 auto;
-
     transition: .4s; /*when resizing*/
 }
 
@@ -30,7 +29,6 @@ body {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     overflow: hidden;
-
     transition: 1s; /*when resizing*/
 }
 
@@ -71,7 +69,6 @@ nav li {
     font-family: Calibri, sans-serif;
     font-weight: bold;
     margin: .5em 0 .5em 0;
-
     transition: .2s; /*when resizing*/
 }
 
@@ -81,14 +78,14 @@ nav a {
     transition: .3s;
 }
 
-nav a:hover {
-    transition: .3s;
-    border-bottom: 2px solid rgb(255, 130, 46);
-}
+    nav a:hover {
+        transition: .3s;
+        border-bottom: 2px solid rgb(255, 130, 46);
+    }
 
-nav a:hover, .nav-active a, .scroll-top-ico:hover {
-    color: rgb(255, 130, 46);
-}
+    nav a:hover, .nav-active a, .scroll-top-ico:hover {
+        color: rgb(255, 130, 46);
+    }
 
 .site-content {
     transition: .4s; /*when resizing*/
@@ -106,20 +103,15 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
 }
 
 .news-header {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                0 1px 5px 0 rgba(0, 0, 0, 0.12),
-                0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     border-top: 1px solid rgba(255, 130, 46, 0.849);
     border-right: 1px solid rgba(255, 130, 46, 0.849);
     border-left: 1px solid rgba(255, 130, 46, 0.849);
-
     background-color: rgba(255, 130, 46, 0.849);
     color: white;
     font-family: Pacifico;
-
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-
     box-sizing: border-box;
     height: 3em;
     position: relative;
@@ -149,18 +141,13 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
 }
 
 .content {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                0 1px 5px 0 rgba(0, 0, 0, 0.12),
-                0 3px 1px -2px rgba(0, 0, 0, 0.2);
-
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-
     background-color: white;
     padding: 1em;
     /*padding-bottom: 3.5em; for footer*/
     box-sizing: border-box;
-
     /* font */
     /*font-family: 'PT Serif', serif;
     font-size: .9em;
@@ -168,7 +155,6 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
     letter-spacing: .4px;
     font-weight: 400;*/
     text-align: justify;
-
     position: relative;
 }
 
@@ -199,7 +185,7 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
 }
 
 
-@media only screen and (min-width: 505px){
+@media only screen and (min-width: 505px) {
     .site-header {
         height: 18em;
     }
@@ -212,10 +198,10 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
         height: 17%;
     }
 
-    nav li {
-        margin: 0 2vw;
-        display: inline-block;
-    }
+        nav li {
+            margin: 0 2vw;
+            display: inline-block;
+        }
 
     .nav-sticky {
         position: fixed;
@@ -239,17 +225,16 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
         cursor: pointer;
     }
 
-    .nav-sticky-scroll-top-button:hover{
-        border: none;
-    }
+        .nav-sticky-scroll-top-button:hover {
+            border: none;
+        }
 
-    .nav-sticky-scroll-top-button .scroll-top-ico {
-        font-size: 2em;
-    }
+        .nav-sticky-scroll-top-button .scroll-top-ico {
+            font-size: 2em;
+        }
 
     .site-content {
         padding: .1em 1em;
-
         transition: .4s; /*when resizing*/
     }
 
@@ -267,27 +252,31 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
     }
 }
 
-@media only screen and (min-width: 760px){
+@media only screen and (min-width: 760px) {
     body {
         width: 80%;
     }
+
     nav li {
         margin: 0 3vw;
         font-size: 1.2em;
     }
+
     .news-header {
         border-radius: 4px;
     }
+
     .content {
         width: 90%;
         margin: 0 auto;
     }
 }
 
-@media only screen and (min-width: 1250px){
+@media only screen and (min-width: 1250px) {
     body {
         width: 60%;
     }
+
     nav li {
         font-size: 1.4em;
     }
