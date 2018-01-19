@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using SzkolaWebApp.Models;
 
 namespace SzkolaWebApp.Controllers
 {
@@ -6,8 +7,9 @@ namespace SzkolaWebApp.Controllers
     {
         public ActionResult News()
         {
+            var model = new NewsViewModel();
             ViewBag.Title = "Aktualności";
-            return View(); // pass title
+            return View(model);
         }
 
         public ActionResult History()

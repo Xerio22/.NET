@@ -1,9 +1,16 @@
-﻿
+﻿@model SzkolaWebApp.Models.NewsViewModel
 @section styles {
     @Styles.Render("~/Content/css/gallery.css")
 }
 
+@{ var isUserAuthenticated = Model.IsUserAuthenticated; }
+
 <!-- Site content -->
+@if (isUserAuthenticated)
+{
+    Html.Partial("_AddNewsPartial");
+}
+
 <section class="site-element site-content">
     <h2 class="hidden">@ViewBag.Title</h2>
 
@@ -11,6 +18,10 @@
         <header class="news-header">
             <h3 class="news-title">Some title I don't know</h3>
             <div class="news-pubdate">05.01.2018</div>
+            @if (isUserAuthenticated)
+            {
+                <div class="news-edit">Edytuj</div>
+            }
         </header>
         <div class="content">
             <p>

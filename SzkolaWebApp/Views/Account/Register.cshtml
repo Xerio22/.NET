@@ -1,1 +1,30 @@
-﻿
+﻿@model SzkolaWebApp.Models.LoginViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+<body>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "todo-form", role = "form" }))
+    {
+        <h3 class="register">Create a new account.</h3>
+
+        @Html.AntiForgeryToken()
+        <p>
+            @Html.LabelFor(m => m.Credentials.Username);
+            @Html.TextBoxFor(m => m.Credentials.Username);
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Credentials.Password);
+            @Html.PasswordFor(m => m.Credentials.Password);
+        </p>
+        <p>
+            <input type="submit" value="Zarejestruj">
+        </p>
+    }
+</body>
+</html>
