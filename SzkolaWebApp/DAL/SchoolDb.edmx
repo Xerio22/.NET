@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SchoolContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SchoolDbContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ArticleId" />
@@ -94,7 +94,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SchoolContextStoreContainer">
+        <EntityContainer Name="SchoolDbContextStoreContainer">
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhotoInArticle" EntityType="Self.PhotoInArticle" Schema="dbo" store:Type="Tables" />
@@ -121,7 +121,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SchoolContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SchoolDbContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ArticleId" />
@@ -212,9 +212,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SchoolContextStoreContainer" CdmEntityContainer="SchoolEntities">
+        <EntityContainerMapping StorageEntityContainer="SchoolDbContextStoreContainer" CdmEntityContainer="SchoolEntities">
           <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="SchoolContext.Article">
+            <EntityTypeMapping TypeName="SchoolDbContext.Article">
               <MappingFragment StoreEntitySet="Article">
                 <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -225,7 +225,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Photos">
-            <EntityTypeMapping TypeName="SchoolContext.Photo">
+            <EntityTypeMapping TypeName="SchoolDbContext.Photo">
               <MappingFragment StoreEntitySet="Photo">
                 <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
@@ -233,7 +233,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegisteredUsers">
-            <EntityTypeMapping TypeName="SchoolContext.RegisteredUser">
+            <EntityTypeMapping TypeName="SchoolDbContext.RegisteredUser">
               <MappingFragment StoreEntitySet="RegisteredUser">
                 <ScalarProperty Name="RegisteredUserId" ColumnName="RegisteredUserId" />
                 <ScalarProperty Name="Nickname" ColumnName="Nickname" />
@@ -243,14 +243,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserTypes">
-            <EntityTypeMapping TypeName="SchoolContext.UserType">
+            <EntityTypeMapping TypeName="SchoolDbContext.UserType">
               <MappingFragment StoreEntitySet="UserType">
                 <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="PhotoInArticle" TypeName="SchoolContext.PhotoInArticle" StoreEntitySet="PhotoInArticle">
+          <AssociationSetMapping Name="PhotoInArticle" TypeName="SchoolDbContext.PhotoInArticle" StoreEntitySet="PhotoInArticle">
             <EndProperty Name="Article">
               <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
             </EndProperty>

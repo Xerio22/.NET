@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using SzkolaWebApp.DAL;
 using SzkolaWebApp.Models;
 
 namespace SzkolaWebApp.Controllers

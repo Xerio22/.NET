@@ -7,23 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SzkolaWebApp.Models
+namespace SzkolaWebApp.DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class UserType
+    public partial class RegisteredUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserType()
+        public RegisteredUser()
         {
-            this.RegisteredUsers = new HashSet<RegisteredUser>();
+            this.Articles = new HashSet<Article>();
         }
     
+        public int RegisteredUserId { get; set; }
+        public string Nickname { get; set; }
+        public byte[] PasswordHash { get; set; }
         public int UserTypeId { get; set; }
-        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegisteredUser> RegisteredUsers { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
+        public virtual UserType UserType { get; set; }
     }
 }

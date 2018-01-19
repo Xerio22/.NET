@@ -66,6 +66,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -125,9 +127,37 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
+    <Compile Include="DAL\Article.cs">
+      <DependentUpon>SchoolDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Photo.cs">
+      <DependentUpon>SchoolDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\RegisteredUser.cs">
+      <DependentUpon>SchoolDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SchoolDb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolDb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SchoolDb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SchoolDb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolDb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UserType.cs">
+      <DependentUpon>SchoolDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -170,7 +200,24 @@
     <Content Include="Content\images\uroczystosci.png" />
     <Content Include="Content\images\wychowawcy.png" />
     <Content Include="Content\images\xy.png" />
+    <Content Include="DAL\SchoolDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolDb.edmx</DependentUpon>
+      <LastGenOutput>SchoolDb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DAL\SchoolDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolDb.edmx</DependentUpon>
+      <LastGenOutput>SchoolDb.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
+    <EntityDeploy Include="DAL\SchoolDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SchoolDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DAL\SchoolDb.edmx.diagram">
+      <DependentUpon>SchoolDb.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\built-in\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\built-in\jquery-3.2.1.js" />
     <Content Include="Scripts\built-in\jquery-3.2.1.min.js" />
@@ -189,7 +236,9 @@
     <Content Include="Scripts\google-map.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\sticky-nav.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -222,12 +271,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\built-in\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\built-in\jquery-3.2.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

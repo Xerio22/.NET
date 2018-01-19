@@ -7,23 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SzkolaWebApp.Models
+namespace SzkolaWebApp.DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Photo
+    public partial class Article
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Photo()
+        public Article()
         {
-            this.Articles = new HashSet<Article>();
+            this.Photos = new HashSet<Photo>();
         }
     
-        public int PhotoId { get; set; }
-        public string Link { get; set; }
+        public int ArticleId { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public System.DateTime PublicationDate { get; set; }
+        public int RegisteredUserId { get; set; }
     
+        public virtual RegisteredUser RegisteredUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Article> Articles { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

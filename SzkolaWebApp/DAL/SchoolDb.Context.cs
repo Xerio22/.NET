@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SzkolaWebApp.Models
+namespace SzkolaWebApp.DAL
 {
     using System;
     using System.Data.Entity;
