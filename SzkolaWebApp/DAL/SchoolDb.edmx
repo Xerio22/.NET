@@ -36,7 +36,7 @@
           </Key>
           <Property Name="RegisteredUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nickname" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="PasswordHash" Type="binary" MaxLength="32" Nullable="false" />
+          <Property Name="PasswordHash" Type="varchar" MaxLength="71" Nullable="false" />
           <Property Name="UserTypeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SiteContent">
@@ -155,7 +155,7 @@
           </Key>
           <Property Name="RegisteredUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PasswordHash" Type="Binary" MaxLength="32" FixedLength="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="71" Unicode="false" FixedLength="false" />
           <Property Name="UserTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Articles" Relationship="Self.FK_Article_RegisteredUser" FromRole="RegisteredUser" ToRole="Article" />
           <NavigationProperty Name="UserType" Relationship="Self.FK_RegisteredUser_UserType" FromRole="RegisteredUser" ToRole="UserType" />

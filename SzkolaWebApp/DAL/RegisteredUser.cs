@@ -22,7 +22,7 @@ namespace SzkolaWebApp.DAL
     
         public int RegisteredUserId { get; set; }
         public string Nickname { get; set; }
-        public byte[] PasswordHash { get; set; }
+        public string PasswordHash { get; set; }
         public int UserTypeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
