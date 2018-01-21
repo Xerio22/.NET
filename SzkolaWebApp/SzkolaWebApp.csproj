@@ -168,6 +168,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\content.css" />
     <Content Include="Content\css\gallery.css" />
     <Content Include="Content\css\history.css" />
     <Content Include="Content\css\informacje\informacje.css" />

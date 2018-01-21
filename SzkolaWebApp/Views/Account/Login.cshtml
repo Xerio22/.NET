@@ -1,37 +1,35 @@
 ﻿@model SzkolaWebApp.Models.LoginViewModel
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-</head>
-<body>
-    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "todo-form", role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        if (Model != null)
+@section styles {
+    @Styles.Render("~/Content/css/content.css")
+}
+
+<section class="site-element site-content content">
+    <h2>@ViewBag.Title</h2>
+    <div class="content-wrapper">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "todo-form", role = "form" }))
         {
+            @Html.AntiForgeryToken()
+            if (Model != null)
+            {
+                <p>
+                    @Model.ErrorMessage
+                </p>
+            }
             <p>
-                @Model.ErrorMessage
+                @Html.LabelFor(m => m.Credentials.Username)
+                @Html.TextBoxFor(m => m.Credentials.Username)
+            </p>
+            <p>
+                @Html.LabelFor(m => m.Credentials.Password)
+                @Html.PasswordFor(m => m.Credentials.Password)
+            </p>
+            <p>
+                <input type="submit" value="Zaloguj">
+            </p>
+            <p>
+                @Html.ActionLink("Stwórz konto", "Register", null, new { @class = "unhref" })
             </p>
         }
-        <p>
-            @Html.LabelFor(m => m.Credentials.Username)
-            @Html.TextBoxFor(m => m.Credentials.Username)
-        </p>
-        <p>
-            @Html.LabelFor(m => m.Credentials.Password)
-            @Html.PasswordFor(m => m.Credentials.Password)
-        </p>
-        <p>
-            <input type="submit" value="Zaloguj">
-        </p>
-        <p>
-            @Html.ActionLink("Stwórz konto", "Register", null, new { @class = "unhref" })
-        </p>
-    }
-</body>
-</html>
+    </div>
+</section>
