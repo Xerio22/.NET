@@ -11,6 +11,8 @@ namespace SzkolaWebApp.Controllers
     {   
         public ActionResult Register()
         {
+            ViewBag.Title = "Register";
+
             return View();
         }
 
@@ -48,6 +50,8 @@ namespace SzkolaWebApp.Controllers
 
         public ActionResult Login()
         {
+            ViewBag.Title = "Login";
+
             if (Session["UserCredentials"] != null)
                 return RedirectToAction("Articles", "Home");
             else

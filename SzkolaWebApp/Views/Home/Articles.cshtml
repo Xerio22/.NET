@@ -6,7 +6,7 @@
 <!-- Site content -->
 @if (Model.IsUserAuthenticated)
 {
-    @Html.Partial("_AddArticlePartial")
+    @Html.Partial("_AddArticlePartial", Model)
 }
 
 <section class="site-element site-content">
@@ -17,7 +17,7 @@
         <article>
             <header class="news-header">
                 <h3 class="news-title">@article.Title</h3>
-                <div class="news-pubdate">@article.PublicationDate</div>
+                <div class="news-pubdate">@article.PublicationDate.ToString("dd.MM.yyyy")</div>
                 @if (Model.IsUserAuthenticated)
                 {
                     <div class="news-edit">Edytuj</div>

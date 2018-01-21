@@ -1,4 +1,5 @@
-﻿
+﻿@model SzkolaWebApp.Models.ArticlesViewModel
+
 <section class="site-element site-content add-article">
     <header class="add-article-header">
         <h3 class="add-article-header-text">Dodaj wpis</h3>
@@ -6,8 +7,8 @@
     <div class="add-article-body">
         @using (Html.BeginForm("AddArticle", "Home", FormMethod.Post, new { @class = "add-article-form", autocomplete = "off" }))
         {
-            <input type="text" placeholder="Tytuł">
-            <textarea placeholder="Treść" onkeyup="textAreaAdjust(this)"></textarea>
+            @Html.TextBoxFor(model => model.Article.Title, htmlAttributes: new { placeholder = "Tytuł" })
+            @Html.TextAreaFor(model => model.Article.Content, htmlAttributes: new { onkeyup = "textAreaAdjust(this)" })
             <button id="add-article-upload-img">Dodaj zdjęcia</button>
 
             <input type="submit" value="Wstaw">

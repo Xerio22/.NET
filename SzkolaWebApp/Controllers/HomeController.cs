@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 using SzkolaWebApp.DAL;
 using SzkolaWebApp.Models;
@@ -7,18 +9,44 @@ namespace SzkolaWebApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly SchoolEntities _context = new SchoolEntities();
+
         public ActionResult Articles()
         {
             ViewBag.Title = "Aktualności";
             var model = new ArticlesViewModel();
+            
+            var isUserAuthenticated = Session["UserCredentials"] != null;
 
-            using (var _context = new SchoolEntities())
+            if (isUserAuthenticated)
             {
-                model.IsUserAuthenticated = Session["UserCredentials"] != null;
-                model.Articles = _context.Articles.ToList();
+                model.Article = new Article();
             }
 
+            model.IsUserAuthenticated = isUserAuthenticated;
+            model.Articles = _context.Articles.OrderByDescending(art => art.PublicationDate).ToList();
+            
+
             return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult AddArticle(ArticlesViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Articles", model);
+            }
+            
+            var username = ((UserCredentials)Session["UserCredentials"]).Username;
+            model.Article.RegisteredUser = _context.RegisteredUsers.First(user => user.Nickname == username);
+            model.Article.PublicationDate = DateTime.Now;
+
+            _context.Articles.Add(model.Article);
+            _context.SaveChanges();
+
+            return RedirectToAction("Articles");
         }
 
 
@@ -27,38 +55,26 @@ namespace SzkolaWebApp.Controllers
             ViewBag.Title = "Historia szkoły";
             return View();
         }
-
-
-        [HttpPost]
-        public ActionResult AddArticle(ArticlesViewModel model)
-        {
-            return View("Articles");
-        }
-
+        
 
         public ActionResult Contact()
         {
             ViewBag.Title = "Kontakt";
             var viewModel = new ContentEditViewModel();
-
-            using (var _context = new SchoolEntities())
-            {
-                viewModel.IsUserAuthenticated = Session["UserCredentials"] != null;
-                viewModel.Content = _context.SiteContents.First(siteContent => siteContent.SiteContentId == 1).Content;
-            }
-
+            
+            viewModel.IsUserAuthenticated = Session["UserCredentials"] != null;
+            viewModel.Content = _context.SiteContents.First(siteContent => siteContent.SiteContentId == 1).Content;
+            
             return View(viewModel);
         }
 
         public ActionResult ContactEditMode()
         {
             ViewBag.Title = "Edycja zakładki kontakt";
-            var viewModel = new ContentEditViewModel();
-
-            using (var _context = new SchoolEntities())
+            var viewModel = new ContentEditViewModel
             {
-                viewModel.Content = _context.SiteContents.First(siteContent => siteContent.SiteContentId == 1).Content;
-            }
+                Content = _context.SiteContents.First(siteContent => siteContent.SiteContentId == 1).Content
+            };
 
             return View(viewModel);
         }
@@ -73,15 +89,21 @@ namespace SzkolaWebApp.Controllers
 
                 return View(model);
             }
+            
+            var siteContent = _context.SiteContents.First(sC => sC.SiteContentId == 1);
+            siteContent.Content = model.Content;
+            _context.SaveChanges();
 
-            using (var _context = new SchoolEntities())
+            return RedirectToAction("Contact");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                var siteContent = _context.SiteContents.First(sC => sC.SiteContentId == 1);
-                siteContent.Content = model.Content;
-                _context.SaveChanges();
-
-                return RedirectToAction("Contact");
+                _context.Dispose();
             }
+            base.Dispose(disposing);
         }
     }
 }
