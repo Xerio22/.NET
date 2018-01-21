@@ -27,7 +27,7 @@
                 }
 
                 <ul>
-                    <li @(ViewBag.Title == "Aktualności" ? "class=nav-active" : "")><a href="@Url.Action("News", "Home")">Aktualności</a></li>
+                    <li @(ViewBag.Title == "Aktualności" ? "class=nav-active" : "")><a href="@Url.Action("Articles", "Home")">Aktualności</a></li>
                     <li @(ViewBag.Title == "Informacje" ? "class=nav-active" : "")><a href="@Url.Action("Information", "Information")">Informacje</a></li>
                     <li @(ViewBag.Title == "Historia szkoły" ? "class=nav-active" : "")><a href="@Url.Action("History", "Home")">Historia szkoły</a></li>
                     <li @(ViewBag.Title == "Kontakt" ? "class=nav-active" : "")><a href="@Url.Action("Contact", "Home")">Kontakt</a></li>

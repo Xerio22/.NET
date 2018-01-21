@@ -13,7 +13,7 @@
             <div class="contact">
                 @Html.Raw(Model.Content)
 
-                @if (Model.AuthenticationViewModel.IsUserAuthenticated)
+                @if (Model.IsUserAuthenticated)
                 {
                     <p class="contact-edit">@Html.ActionLink("Edytuj", "ContactEditMode")</p>
                 }

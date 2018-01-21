@@ -18,7 +18,7 @@ namespace SzkolaWebApp
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "News", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Articles", id = UrlParameter.Optional }
             );
         }
     }

@@ -7,11 +7,20 @@ namespace SzkolaWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult News()
+        public ActionResult Articles()
         {
             ViewBag.Title = "Aktualności";
-            return View(new AuthenticationViewModel() { IsUserAuthenticated = Session["UserCredentials"] != null });
+            var model = new ArticlesViewModel();
+
+            using (var _context = new SchoolEntities())
+            {
+                model.IsUserAuthenticated = Session["UserCredentials"] != null;
+                model.Articles = _context.Articles.ToList();
+            }
+
+            return View(model);
         }
+
 
         public ActionResult History()
         {
@@ -19,20 +28,22 @@ namespace SzkolaWebApp.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public ActionResult AddArticle(ArticlesViewModel model)
+        {
+            return View("Articles");
+        }
+
+
         public ActionResult Contact()
         {
             ViewBag.Title = "Kontakt";
-
-            var viewModel = new ContentEditViewModel()
-            {
-                AuthenticationViewModel = new AuthenticationViewModel()
-                {
-                    IsUserAuthenticated = Session["UserCredentials"] != null
-                }
-            };
+            var viewModel = new ContentEditViewModel();
 
             using (var _context = new SchoolEntities())
             {
+                viewModel.IsUserAuthenticated = Session["UserCredentials"] != null;
                 viewModel.Content = _context.SiteContents.First(siteContent => siteContent.SiteContentId == 1).Content;
             }
 
@@ -42,7 +53,6 @@ namespace SzkolaWebApp.Controllers
         public ActionResult ContactEditMode()
         {
             ViewBag.Title = "Edycja zakładki kontakt";
-
             var viewModel = new ContentEditViewModel();
 
             using (var _context = new SchoolEntities())

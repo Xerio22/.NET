@@ -40,7 +40,7 @@ namespace SzkolaWebApp.Controllers
                         Username = model.Credentials.Username
                     };
 
-                    return RedirectToAction("News", "Home");
+                    return RedirectToAction("Articles", "Home");
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace SzkolaWebApp.Controllers
         public ActionResult Login()
         {
             if (Session["UserCredentials"] != null)
-                return RedirectToAction("News", "Home");
+                return RedirectToAction("Articles", "Home");
             else
                 return View();
         }
@@ -82,14 +82,14 @@ namespace SzkolaWebApp.Controllers
                 }
             }
 
-            return RedirectToAction("News", "Home");
+            return RedirectToAction("Articles", "Home");
         }
 
 
         public ActionResult Logout()
         {
             Session.Abandon();
-            return RedirectToAction("News", "Home");
+            return RedirectToAction("Articles", "Home");
         }
     }
 }

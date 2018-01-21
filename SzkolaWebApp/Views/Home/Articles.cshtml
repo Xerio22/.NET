@@ -1,0 +1,64 @@
+﻿@model SzkolaWebApp.Models.ArticlesViewModel
+@section styles {
+    @Styles.Render("~/Content/css/gallery.css")
+}
+
+<!-- Site content -->
+@if (Model.IsUserAuthenticated)
+{
+    @Html.Partial("_AddArticlePartial")
+}
+
+<section class="site-element site-content">
+    <h2 class="hidden">@ViewBag.Title</h2>
+
+    @foreach (var article in Model.Articles)
+    {
+        <article>
+            <header class="news-header">
+                <h3 class="news-title">@article.Title</h3>
+                <div class="news-pubdate">@article.PublicationDate</div>
+                @if (Model.IsUserAuthenticated)
+                {
+                    <div class="news-edit">Edytuj</div>
+                }
+            </header>
+            <div class="content">
+                <p>
+                    @article.Content
+                </p>
+
+                @if (article.Photos.Count > 0)
+                { 
+                    <div class="gallery-wrapper">
+                        <div class="gallery">
+                            <div class="gallery-main-view">
+                                @foreach (var photo in article.Photos)
+                                {
+                                    <img class="gallery-image" src="@photo.Link">
+                                }
+                            </div>
+                            <div class="gallery-arrows">
+                                <div class="gallery-left-arrow">
+                                    <i class="material-icons">keyboard_arrow_left</i>
+                                </div>
+                                <div class="gallery-right-arrow">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </article>
+    }
+</section>
+
+@section scripts 
+{
+    @Scripts.Render("~/Scripts/gallery.js")
+    @if (Model.IsUserAuthenticated)
+    {
+        @Scripts.Render("~/Scripts/script.js")
+    }
+}

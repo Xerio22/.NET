@@ -4,7 +4,7 @@
         <h3 class="add-article-header-text">Dodaj wpis</h3>
     </header>
     <div class="add-article-body">
-        @using (Html.BeginForm("AddNews", "Home", FormMethod.Post, new { @class = "add-article-form", autocomplete = "off" }))
+        @using (Html.BeginForm("AddArticle", "Home", FormMethod.Post, new { @class = "add-article-form", autocomplete = "off" }))
         {
             <input type="text" placeholder="Tytuł">
             <textarea placeholder="Treść" onkeyup="textAreaAdjust(this)"></textarea>
