@@ -4,20 +4,17 @@
     @Styles.Render("~/Content/css/contact.css")
 }
 
-
 <!-- Site content -->
 <section class="site-element site-content content">
     <h2>Kontakt</h2>
     <div class="content-wrapper">
         <div class="top">
-            <div class="contact">
-                @Html.Raw(Model.Content)
+            @using (Html.BeginForm("ContactEditMode", "Home", FormMethod.Post))
+            {
+                @Html.TextAreaFor(model => model.Content, new { @class = "contact-edit-field" } )
 
-                @if (Model.AuthenticationViewModel.IsUserAuthenticated)
-                {
-                    <p class="contact-edit">@Html.ActionLink("Edytuj", "ContactEditMode")</p>
-                }
-            </div>
+                <input type="submit" value="Zapisz zmiany" class="save-changes-button">
+            }
             <img id="kamien" src="~/Content/images/kamien.jpg" alt="kamien">
         </div>
     </div>

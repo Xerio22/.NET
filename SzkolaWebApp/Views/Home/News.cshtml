@@ -1,14 +1,12 @@
-﻿@model SzkolaWebApp.Models.NewsViewModel
+﻿@model SzkolaWebApp.Models.AuthenticationViewModel
 @section styles {
     @Styles.Render("~/Content/css/gallery.css")
 }
 
-@{ var isUserAuthenticated = Model.IsUserAuthenticated; }
-
 <!-- Site content -->
-@if (isUserAuthenticated)
+@if (Model.IsUserAuthenticated)
 {
-    Html.Partial("_AddNewsPartial");
+    Html.Partial("LoggedIn/_AddNewsPartial");
 }
 
 <section class="site-element site-content">
@@ -18,7 +16,7 @@
         <header class="news-header">
             <h3 class="news-title">Some title I don't know</h3>
             <div class="news-pubdate">05.01.2018</div>
-            @if (isUserAuthenticated)
+            @if (Model.IsUserAuthenticated)
             {
                 <div class="news-edit">Edytuj</div>
             }

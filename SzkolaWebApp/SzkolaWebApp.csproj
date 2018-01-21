@@ -151,14 +151,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SchoolDb.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\SiteContent.cs">
+      <DependentUpon>SchoolDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\UserType.cs">
       <DependentUpon>SchoolDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContentEditViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
-    <Compile Include="Models\NewsViewModel.cs" />
+    <Compile Include="Models\AuthenticationViewModel.cs" />
     <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -270,6 +274,8 @@
     <Content Include="Views\Information\Educators.cshtml" />
     <Content Include="Views\Information\LessonsScheduleYoungerClasses.cshtml" />
     <Content Include="Views\Information\LessonsScheduleOlderClasses.cshtml" />
+    <Content Include="Views\Home\ContactEditMode.cshtml" />
+    <Content Include="Views\Home\LoggedIn\_AddNewsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

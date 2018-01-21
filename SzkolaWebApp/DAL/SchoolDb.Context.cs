@@ -29,5 +29,6 @@ namespace SzkolaWebApp.DAL
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
+        public virtual DbSet<SiteContent> SiteContents { get; set; }
     }
 }

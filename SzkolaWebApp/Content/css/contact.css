@@ -31,3 +31,28 @@
     margin-top: 3em;
     background-color: grey;
 }
+
+
+.contact-edit {
+    margin-top: 2em;
+}
+
+.contact-edit a {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+.contact-edit a:hover {
+    text-decoration: underline;
+}
+
+.contact-edit-field {
+    resize: none;
+    width: 26em;
+    height: 8em;
+}
+
+.save-changes-button {
+    width: 26.51em;
+}

@@ -9,5 +9,6 @@ namespace SzkolaWebApp.Models
     {
         public string ErrorMessage { get; set; }
         public UserCredentials Credentials { get; set; }
+        public bool RegistrationComplete { get; set; }
     }
 }
