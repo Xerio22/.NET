@@ -32,8 +32,13 @@ namespace SzkolaWebApp.Controllers
                 {
                     var passwordHash = Encoding.ASCII.GetBytes(model.Credentials.Password);
 
-                    _context.RegisteredUsers.Add(new RegisteredUser() { Nickname = model.Credentials.Username, PasswordHash = passwordHash } );
+                    _context.RegisteredUsers.Add(new RegisteredUser() { Nickname = model.Credentials.Username, PasswordHash = passwordHash, UserTypeId = 2 } );
                     _context.SaveChanges();
+
+                    Session["UserCredentials"] = new UserCredentials()
+                    {
+                        Username = model.Credentials.Username
+                    };
 
                     return RedirectToAction("News", "Home");
                 }
@@ -43,8 +48,10 @@ namespace SzkolaWebApp.Controllers
 
         public ActionResult Login()
         {
-            /*new LoginViewModel() { ErrorMessage = "" }*/
-            return View();
+            if (Session["UserCredentials"] != null)
+                return RedirectToAction("News", "Home");
+            else
+                return View();
         }
 
 
@@ -52,7 +59,7 @@ namespace SzkolaWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
         {
-            if (Session[model.Credentials.Username] == null)
+            if (Session["UserCredentials"] == null)
             {
                 using (var _context = new SchoolEntities())
                 {
