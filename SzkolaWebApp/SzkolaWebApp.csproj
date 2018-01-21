@@ -275,7 +275,7 @@
     <Content Include="Views\Information\LessonsScheduleYoungerClasses.cshtml" />
     <Content Include="Views\Information\LessonsScheduleOlderClasses.cshtml" />
     <Content Include="Views\Home\ContactEditMode.cshtml" />
-    <Content Include="Views\Home\LoggedIn\_AddNewsPartial.cshtml" />
+    <Content Include="Views\Home\_AddNewsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

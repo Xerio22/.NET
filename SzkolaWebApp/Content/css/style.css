@@ -102,7 +102,7 @@ nav a {
     border-radius: 5px;
 }
 
-.news-header {
+.news-header, .add-article-header {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     border-top: 1px solid rgba(255, 130, 46, 0.849);
     border-right: 1px solid rgba(255, 130, 46, 0.849);
@@ -117,7 +117,7 @@ nav a {
     position: relative;
 }
 
-.news-title {
+.news-title, .add-article-header-text {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -140,7 +140,37 @@ nav a {
     right: .7em;
 }
 
-.content {
+.news-edit {
+    position: absolute;
+    left: 83%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+    .news-edit:hover {
+        text-decoration: underline;
+    }
+
+/* .news-edit {
+    position: absolute;
+    left: 101%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: .5em;
+    background-color: rgba(255, 130, 46, 0.849);
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.news-edit:hover {
+    background-color: rgb(255, 130, 46);
+    transition: .3s;
+} */
+
+.content, .add-article-body {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -183,6 +213,92 @@ nav a {
     background-color: blueviolet;
     margin-top: 3em;
 }
+
+
+/* LOGGED-IN */
+.add-article-header {
+    text-align: center;
+    cursor: pointer;
+    transition: .3s;
+}
+
+    .add-article-header:hover {
+        background-color: rgb(255, 130, 46);
+        transition: .3s;
+    }
+
+.add-article-header-text {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* letter-spacing: .1em; */
+}
+
+.add-article-form input, .add-article-form button, .add-article-form textarea {
+    display: block;
+    margin: 0 auto 1.2em auto;
+}
+
+    .add-article-form input[type=text], .add-article-form textarea, .add-article-form input[type=submit], .add-article-form button {
+        height: 2.5em;
+        width: 100%;
+        border: none;
+        background-color: rgb(160, 160, 160);
+        border-radius: 20px;
+        text-align: center;
+    }
+
+.add-article-form textarea {
+    text-align: left;
+    height: 8em;
+    overflow: hidden;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+    .add-article-form input[type=text]::-webkit-input-placeholder, .add-article-form textarea::-webkit-input-placeholder {
+        text-align: center;
+        font-family: Pacifico;
+    }
+
+.add-article-form input[type=submit], .add-article-form button {
+    background-color: rgba(65, 253, 65, 0.753);
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.add-article-form button {
+    float: left;
+    width: 30%;
+}
+
+.add-article-form input[type=submit] {
+    float: right;
+    width: 30%;
+}
+
+.clear {
+    clear: both;
+}
+
+.add-article-body {
+    display: none;
+}
+
+
+
+.edit {
+    position: absolute;
+    right: 3.13em;
+    top: 1.8em;
+    font-weight: bold;
+}
+
+    .edit:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
 
 
 @media only screen and (min-width: 505px) {
@@ -238,7 +354,7 @@ nav a {
         transition: .4s; /*when resizing*/
     }
 
-    .content {
+    .content, .add-article-body {
         padding: 1.5em;
         /*padding-bottom: 3.5em; for footer */
     }
@@ -262,11 +378,11 @@ nav a {
         font-size: 1.2em;
     }
 
-    .news-header {
+    .news-header, .add-article-header {
         border-radius: 4px;
     }
 
-    .content {
+    .content, .add-article-body {
         width: 90%;
         margin: 0 auto;
     }

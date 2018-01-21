@@ -6,7 +6,7 @@
 <!-- Site content -->
 @if (Model.IsUserAuthenticated)
 {
-    Html.Partial("LoggedIn/_AddNewsPartial");
+    @Html.Partial("_AddNewsPartial")
 }
 
 <section class="site-element site-content">
@@ -51,4 +51,8 @@
 @section scripts 
 {
     @Scripts.Render("~/Scripts/gallery.js")
+    @if (Model.IsUserAuthenticated)
+    {
+        @Scripts.Render("~/Scripts/script.js")
+    }
 }
