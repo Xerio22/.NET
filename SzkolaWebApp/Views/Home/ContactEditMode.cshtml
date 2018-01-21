@@ -11,9 +11,12 @@
         <div class="top">
             @using (Html.BeginForm("ContactEditMode", "Home", FormMethod.Post))
             {
-                @Html.TextAreaFor(model => model.Content, new { @class = "contact-edit-field" } )
+                @*@Html.TextAreaFor(model => model.Content, new { @class = "contact-edit-field", @Value = Model.Content } )*@
+                <textarea class="contact-edit-field" id="Content" name="Content">@Model.Content</textarea>
 
                 <input type="submit" value="Zapisz zmiany" class="save-changes-button">
+
+                <p>@Model.ErrorMessage</p>
             }
             <img id="kamien" src="~/Content/images/kamien.jpg" alt="kamien">
         </div>

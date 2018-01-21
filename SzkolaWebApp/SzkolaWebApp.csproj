@@ -130,6 +130,7 @@
     <Compile Include="DAL\Article.cs">
       <DependentUpon>SchoolDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\PasswordStorage.cs" />
     <Compile Include="DAL\Photo.cs">
       <DependentUpon>SchoolDb.tt</DependentUpon>
     </Compile>

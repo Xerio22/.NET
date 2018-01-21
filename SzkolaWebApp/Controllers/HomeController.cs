@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using SzkolaWebApp.DAL;
@@ -25,7 +24,6 @@ namespace SzkolaWebApp.Controllers
 
             model.IsUserAuthenticated = isUserAuthenticated;
             model.Articles = _context.Articles.OrderByDescending(art => art.PublicationDate).ToList();
-            
 
             return View(model);
         }
@@ -60,16 +58,22 @@ namespace SzkolaWebApp.Controllers
         public ActionResult Contact()
         {
             ViewBag.Title = "Kontakt";
-            var viewModel = new ContentEditViewModel();
-            
-            viewModel.IsUserAuthenticated = Session["UserCredentials"] != null;
-            viewModel.Content = _context.SiteContents.First(siteContent => siteContent.SiteContentId == 1).Content;
-            
+            var viewModel = new ContentEditViewModel
+            {
+                IsUserAuthenticated = Session["UserCredentials"] != null,
+                Content = _context.SiteContents.First(siteContent => siteContent.SiteContentId == 1).Content
+            };
+
             return View(viewModel);
         }
 
         public ActionResult ContactEditMode()
         {
+            if(Session["UserCredentials"] == null)
+            {
+                return RedirectToAction("Contact");
+            }
+
             ViewBag.Title = "Edycja zakładki kontakt";
             var viewModel = new ContentEditViewModel
             {
@@ -83,7 +87,14 @@ namespace SzkolaWebApp.Controllers
         [ValidateInput(false)]
         public ActionResult ContactEditMode(ContentEditViewModel model)
         {
-            if(model.Content.Length > 2000)
+            if (model.Content == null)
+            {
+                model.Content = _context.SiteContents.First(sc => sc.SiteContentId == 1).Content;
+                model.ErrorMessage = "Treść nie może być pusta";
+
+                return View(model);
+            }
+            if (model.Content.Length > 2000)
             {
                 model.ErrorMessage = "Wprowadzona treść jest za długa!";
 
