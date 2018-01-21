@@ -1,4 +1,5 @@
 ﻿@model SzkolaWebApp.Models.ArticlesViewModel
+
 @section styles {
     @Styles.Render("~/Content/css/gallery.css")
 }
@@ -7,6 +8,11 @@
 @if (Model.IsUserAuthenticated)
 {
     @Html.Partial("_AddArticlePartial", Model)
+
+    @section logout
+    {
+       <a href="/Account/Logout" class="logout-link"><div class='site-element site-footer logout'>Wyloguj się</div></a>
+    }
 }
 
 <section class="site-element site-content">

@@ -46,6 +46,8 @@
         ©2018 Szkoła podstawowa z oddziałami gimnazjalnymi. Designed by Maciej Sadoś
     </footer>
 
+    @RenderSection("logout", required: false)
+
     @Scripts.Render("~/Scripts/built-in/jquery-3.2.1.min.js")
     @Scripts.Render("~/Scripts/sticky-nav.js")
     @RenderSection("scripts", required: false)

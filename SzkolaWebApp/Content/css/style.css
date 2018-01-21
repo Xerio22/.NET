@@ -239,14 +239,14 @@ nav a {
     margin: 0 auto 1.2em auto;
 }
 
-    .add-article-form input[type=text], .add-article-form textarea, .add-article-form input[type=submit], .add-article-form button {
-        height: 2.5em;
-        width: 100%;
-        border: none;
-        background-color: rgb(160, 160, 160);
-        border-radius: 20px;
-        text-align: center;
-    }
+.add-article-form input[type=text], .add-article-form textarea, .add-article-form input[type=submit], .add-article-form button {
+    height: 2.5em;
+    width: 100%;
+    border: none;
+    background-color: rgb(160, 160, 160);
+    border-radius: 20px;
+    text-align: center;
+}
 
 .add-article-form textarea {
     text-align: left;
@@ -256,10 +256,10 @@ nav a {
     box-sizing: border-box;
 }
 
-    .add-article-form input[type=text]::-webkit-input-placeholder, .add-article-form textarea::-webkit-input-placeholder {
-        text-align: center;
-        font-family: Pacifico;
-    }
+.add-article-form input[type=text]::-webkit-input-placeholder, .add-article-form textarea::-webkit-input-placeholder {
+    text-align: center;
+    font-family: Pacifico;
+}
 
 .add-article-form input[type=submit], .add-article-form button {
     background-color: rgba(65, 253, 65, 0.753);
@@ -285,6 +285,21 @@ nav a {
     display: none;
 }
 
+.logout {
+    width: 7em;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background-color: rgba(135, 10, 252, 0.575);
+}
+
+.logout-link {
+    color: rgb(202, 194, 194);
+    text-decoration: none;
+}
+
 
 
 .edit {
@@ -294,10 +309,10 @@ nav a {
     font-weight: bold;
 }
 
-    .edit:hover {
-        cursor: pointer;
-        text-decoration: underline;
-    }
+.edit:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
 
 
 
@@ -314,10 +329,10 @@ nav a {
         height: 17%;
     }
 
-        nav li {
-            margin: 0 2vw;
-            display: inline-block;
-        }
+    nav li {
+        margin: 0 2vw;
+        display: inline-block;
+    }
 
     .nav-sticky {
         position: fixed;
@@ -341,13 +356,13 @@ nav a {
         cursor: pointer;
     }
 
-        .nav-sticky-scroll-top-button:hover {
-            border: none;
-        }
+    .nav-sticky-scroll-top-button:hover {
+        border: none;
+    }
 
-        .nav-sticky-scroll-top-button .scroll-top-ico {
-            font-size: 2em;
-        }
+    .nav-sticky-scroll-top-button .scroll-top-ico {
+        font-size: 2em;
+    }
 
     .site-content {
         padding: .1em 1em;
