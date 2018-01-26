@@ -5,13 +5,13 @@
         <h3 class="add-article-header-text">Dodaj wpis</h3>
     </header>
     <div class="add-article-body">
-        @using (Html.BeginForm("AddArticle", "Home", FormMethod.Post, new { @class = "add-article-form", autocomplete = "off" }))
+        @using (Html.BeginForm("AddArticle", "Home", FormMethod.Post, new { @class = "add-article-form", name = "add-article-form", autocomplete = "off" }))
         {
-            <div class="validation-error">@Html.DisplayFor(model => model.TitleErrorMessage)</div>
-            @Html.TextBoxFor(model => model.Article.Title, htmlAttributes: new { placeholder = "Tytuł" })
+            <div class="validation-error" id="title-error-message">@Html.DisplayFor(model => model.TitleErrorMessage)</div>
+            @Html.TextBoxFor(model => model.Article.Title, htmlAttributes: new { id = "article-title", placeholder = "Tytuł" })
 
-            <div class="validation-error">@Html.DisplayFor(model => model.ContentErrorMessage)</div>
-            @Html.TextAreaFor(model => model.Article.Content, htmlAttributes: new { onkeyup = "textAreaAdjust(this)" })
+            <div class="validation-error" id="content-error-message">@Html.DisplayFor(model => model.ContentErrorMessage)</div>
+            @Html.TextAreaFor(model => model.Article.Content, htmlAttributes: new { id = "article-content", onkeyup = "textAreaAdjust(this)" })
 
             <button id="add-article-upload-img">Dodaj zdjęcia</button>
             <input type="submit" value="Wstaw">

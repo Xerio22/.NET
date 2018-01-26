@@ -247,6 +247,9 @@
     <Content Include="Scripts\sticky-nav.js" />
     <Content Include="Scripts\Validation\Account\login_validation.js" />
     <Content Include="Scripts\Validation\Account\registration_validation.js" />
+    <Content Include="Scripts\Validation\Articles\add_article_validation.js" />
+    <Content Include="Scripts\Validation\Articles\delete_article_validation.js" />
+    <Content Include="Scripts\Validation\Articles\edit_article_validation.js" />
     <Content Include="Scripts\Validation\Contact\contact_validation.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -285,7 +288,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Validation\Articles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
