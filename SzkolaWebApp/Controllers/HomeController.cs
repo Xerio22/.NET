@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using SzkolaWebApp.DAL;
@@ -17,13 +18,13 @@ namespace SzkolaWebApp.Controllers
             
             var isUserAuthenticated = Session["UserCredentials"] != null;
 
-            if (isUserAuthenticated)
-            {
-                model.Article = new Article();
-            }
+            //if (isUserAuthenticated)
+            //{
+            //    model.Article = new Article();
+            //}
 
             model.IsUserAuthenticated = isUserAuthenticated;
-            model.Articles = _context.Articles.OrderByDescending(art => art.PublicationDate).ToList();
+            model.Articles = GetArticlesListFromDatabase();
 
             return View(model);
         }
@@ -32,8 +33,12 @@ namespace SzkolaWebApp.Controllers
         [HttpPost]
         public ActionResult AddArticle(ArticlesViewModel model)
         {
-            if (!ModelState.IsValid)
+            bool isModelValid = CheckArticleModelValidity(model);
+
+            if (!isModelValid)
             {
+                model.IsUserAuthenticated = Session["UserCredentials"] != null;
+                model.Articles = GetArticlesListFromDatabase();
                 return View("Articles", model);
             }
             
@@ -47,6 +52,36 @@ namespace SzkolaWebApp.Controllers
             return RedirectToAction("Articles");
         }
 
+
+        // zrobione w ten sposób, aby wyświetlać wszystkie błędy bezpośrednio
+        private bool CheckArticleModelValidity(ArticlesViewModel model)
+        {
+            bool validationResult = true;
+
+            if (string.IsNullOrEmpty(model.Article.Title))
+            {
+                model.TitleErrorMessage = "~ Tytuł nie może być pusty";
+                validationResult = false;
+            }
+            else if (model.Article.Title.Length > 60)
+            {
+                model.TitleErrorMessage = "~ Tytuł jest za długi. Maksymalna liczba znaków to 60";
+                validationResult = false;
+            }
+
+            if (string.IsNullOrEmpty(model.Article.Content))
+            {
+                model.ContentErrorMessage = "~ Treść nie może być pusta";
+                validationResult = false;
+            }
+            else if (model.Article.Content.Length > 4000)
+            {
+                model.ContentErrorMessage = "~ Treść jest za długa. Maksymalna liczba znaków to 4000";
+                validationResult = false;
+            }
+
+            return validationResult;
+        }
 
         public ActionResult History()
         {
@@ -67,6 +102,7 @@ namespace SzkolaWebApp.Controllers
             return View(viewModel);
         }
 
+
         public ActionResult ContactEditMode()
         {
             if(Session["UserCredentials"] == null)
@@ -82,6 +118,7 @@ namespace SzkolaWebApp.Controllers
 
             return View(viewModel);
         }
+
 
         [HttpPost]
         [ValidateInput(false)]
@@ -107,6 +144,13 @@ namespace SzkolaWebApp.Controllers
 
             return RedirectToAction("Contact");
         }
+
+
+        private IList<Article> GetArticlesListFromDatabase()
+        {
+            return _context.Articles.OrderByDescending(art => art.PublicationDate).ToList();
+        }
+
 
         protected override void Dispose(bool disposing)
         {

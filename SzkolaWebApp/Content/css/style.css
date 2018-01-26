@@ -228,7 +228,7 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
     transition: .3s;
 }
 
-.add-article-header:hover {
+.add-article-header:hover, .add-article-form input[type=submit]:hover, .add-article-form button:hover {
     background-color: rgb(255, 130, 46);
     transition: .3s;
 }
@@ -268,7 +268,10 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
 }
 
 .add-article-form input[type=submit], .add-article-form button {
-    background-color: rgba(65, 253, 65, 0.753);
+    background-color: rgba(255, 130, 46, 0.849);
+    transition: .3s;
+    font-family: Pacifico;
+    color: white;
     cursor: pointer;
     margin-bottom: 0;
 }
@@ -318,6 +321,14 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
 .edit:hover {
     cursor: pointer;
     text-decoration: underline;
+}
+
+.validation-error {
+    color: rgba(255, 0, 0, 0.72);
+    font-family: Pacifico;
+    font-size: .9em;
+    margin-bottom: .4em;
+    margin-left: .5em;
 }
 
 

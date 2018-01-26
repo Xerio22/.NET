@@ -8,5 +8,7 @@ namespace SzkolaWebApp.Models
         public Article Article { get; set; }
         public IList<Article> Articles { get; set; }
         public bool IsUserAuthenticated { get; set; }
+        public string TitleErrorMessage { get; set; }
+        public string ContentErrorMessage { get; set; }
     }
 }
