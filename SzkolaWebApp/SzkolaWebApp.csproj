@@ -245,6 +245,8 @@
     <Content Include="Scripts\google-map.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\sticky-nav.js" />
+    <Content Include="Scripts\Validation\Account\login_validation.js" />
+    <Content Include="Scripts\Validation\Account\registration_validation.js" />
     <Content Include="Scripts\Validation\Contact\contact_validation.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

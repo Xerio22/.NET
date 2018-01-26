@@ -18,7 +18,7 @@
             }
             <p>
                 @Html.LabelFor(m => m.Credentials.Username)
-                @Html.TextBoxFor(m => m.Credentials.Username)
+                @Html.TextBoxFor(m => m.Credentials.Username, new { id = "login-username" })
             </p>
             <p>
                 @Html.LabelFor(m => m.Credentials.Password)
@@ -33,3 +33,7 @@
         }
     </div>
 </section>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/Validation/Account/login_validation.js")    
+}

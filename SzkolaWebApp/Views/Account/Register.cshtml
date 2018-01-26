@@ -19,7 +19,7 @@
             @Html.AntiForgeryToken()
             <p>
                 @Html.LabelFor(m => m.Credentials.Username)
-                @Html.TextBoxFor(m => m.Credentials.Username)
+                @Html.TextBoxFor(m => m.Credentials.Username, new { id = "register-username" })
             </p>
             <p>
                 @Html.LabelFor(m => m.Credentials.Password)
@@ -31,3 +31,7 @@
         }
     </div>
 </section>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/Validation/Account/registration_validation.js")
+}
