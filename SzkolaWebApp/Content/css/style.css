@@ -78,14 +78,14 @@ nav a {
     transition: .3s;
 }
 
-    nav a:hover {
-        transition: .3s;
-        border-bottom: 2px solid rgb(255, 130, 46);
-    }
+nav a:hover {
+    transition: .3s;
+    border-bottom: 2px solid rgb(255, 130, 46);
+}
 
-    nav a:hover, .nav-active a, .scroll-top-ico:hover {
-        color: rgb(255, 130, 46);
-    }
+nav a:hover, .nav-active a, .scroll-top-ico:hover {
+    color: rgb(255, 130, 46);
+}
 
 .site-content {
     transition: .4s; /*when resizing*/
@@ -133,24 +133,30 @@ nav a {
     font-size: .85em;
 }
 
-.news-pubdate {
+.news-header-right-panel {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: .7em;
 }
 
-.news-edit {
-    position: absolute;
-    left: 83%;
-    top: 50%;
-    transform: translateY(-50%);
+.news-pubdate {
+    float: right;
+}
+
+.news-edit, .news-delete {
+    float: left;
     cursor: pointer;
 }
 
-    .news-edit:hover {
-        text-decoration: underline;
-    }
+.news-edit:hover, .news-delete:hover {
+    text-decoration: underline;
+}
+
+.news-delete {
+    margin-left: 1em;
+    margin-right: 1em;
+}
 
 /* .news-edit {
     position: absolute;
@@ -222,10 +228,10 @@ nav a {
     transition: .3s;
 }
 
-    .add-article-header:hover {
-        background-color: rgb(255, 130, 46);
-        transition: .3s;
-    }
+.add-article-header:hover {
+    background-color: rgb(255, 130, 46);
+    transition: .3s;
+}
 
 .add-article-header-text {
     position: absolute;
