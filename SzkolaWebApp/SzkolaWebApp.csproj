@@ -245,6 +245,7 @@
     <Content Include="Scripts\google-map.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\sticky-nav.js" />
+    <Content Include="Scripts\Validation\Contact\contact_validation.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -282,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\Validation\Articles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

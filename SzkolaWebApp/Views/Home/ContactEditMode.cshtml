@@ -6,17 +6,17 @@
 
 <!-- Site content -->
 <section class="site-element site-content content">
-    <h2>Kontakt</h2>
+    <h2>@ViewBag.Title</h2>
     <div class="content-wrapper">
         <div class="top">
-            @using (Html.BeginForm("ContactEditMode", "Home", FormMethod.Post))
+            @using (Html.BeginForm("ContactEditMode", "Home", FormMethod.Post, new { onsubmit = "return validateContactForm()", name = "contact-form" }))
             {
                 @*@Html.TextAreaFor(model => model.Content, new { @class = "contact-edit-field", @Value = Model.Content } )*@
                 <textarea class="contact-edit-field" id="Content" name="Content">@Model.Content</textarea>
 
                 <input type="submit" value="Zapisz zmiany" class="save-changes-button">
 
-                <p>@Model.ErrorMessage</p>
+                <p id="contact-error-box">@Model.ErrorMessage</p>
             }
             <img id="kamien" src="~/Content/images/kamien.jpg" alt="kamien">
         </div>
@@ -26,5 +26,6 @@
 
 @section scripts {
     @Scripts.Render("~/Scripts/google-map.js")
+    @Scripts.Render("~/Scripts/Validation/Contact/contact_validation.js")
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7p6uDIt9CH--LVdVYMB13RDci17Az9Ao&callback=initMap"></script>
 }
