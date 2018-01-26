@@ -18,18 +18,6 @@
         <div class="header-image"></div>
         <nav id="nav">
             <div class="nav-content-wrapper">
-                @if(ViewBag.Title != "Aktualności" &&
-                    ViewBag.Title != "Informacje" &&
-                    ViewBag.Title != "Historia szkoły" &&
-                    ViewBag.Title != "Kontakt" &&
-                    ViewBag.Title != "Logowanie" &&
-                    ViewBag.Title != "Rejestracja" &&
-                    ViewBag.Title != "Kontakt" &&
-                    ViewBag.Title != "Edycja zakładki kontakt")
-                {
-                    ViewBag.Title = "Informacje";
-                }
-
                 <ul>
                     <li @(ViewBag.Title == "Aktualności" ? "class=nav-active" : "")><a href="@Url.Action("Articles", "Home")">Aktualności</a></li>
                     <li @(ViewBag.Title == "Informacje" ? "class=nav-active" : "")><a href="@Url.Action("Information", "Information")">Informacje</a></li>
