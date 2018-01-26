@@ -145,6 +145,8 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
 }
 
 .news-edit, .news-delete {
+    text-decoration: none;
+    color: white;
     float: left;
     cursor: pointer;
 }
@@ -284,6 +286,11 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
 .add-article-form input[type=submit] {
     float: right;
     width: 30%;
+}
+
+/*TODO*/
+.article-cancel-edit {
+ 
 }
 
 .clear {

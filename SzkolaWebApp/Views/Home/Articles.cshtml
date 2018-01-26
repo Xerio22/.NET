@@ -1,4 +1,5 @@
-﻿@model SzkolaWebApp.Models.ArticlesViewModel
+﻿@using SzkolaWebApp.Models
+@model ArticlesViewModel
 
 @section styles {
     @Styles.Render("~/Content/css/gallery.css")
@@ -7,7 +8,14 @@
 <!-- Site content -->
 @if (Model.IsUserAuthenticated)
 {
-    @Html.Partial("_AddArticlePartial", Model)
+    if (Model.HeaderMode == HeaderModes.ADD)
+    {
+        @Html.Partial("_AddArticlePartial", Model)
+    }
+    else
+    {
+        @Html.Partial("_EditArticlePartial", Model)
+    }
 
     @section logout
     {
@@ -26,8 +34,8 @@
                 <div class="news-header-right-panel">
                     @if (Model.IsUserAuthenticated)
                     {
-                        <div class="news-edit">Edytuj</div>
-                        <div class="news-delete">Usuń</div>
+                        <a class="news-edit" href="@Url.Action("EditArticle", "Home", new { articleId = article.ArticleId })">Edytuj</a>
+                        <a class="news-delete" href="@Url.Action("DeleteArticle", "Home", new { articleId = article.ArticleId })">Usuń</a>
                     }
                     <div class="news-pubdate">@article.PublicationDate.ToString("dd.MM.yyyy")</div>
                 </div>

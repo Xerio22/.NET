@@ -249,8 +249,8 @@
     <Content Include="Scripts\Validation\Account\registration_validation.js" />
     <Content Include="Scripts\Validation\Articles\add_article_validation.js" />
     <Content Include="Scripts\Validation\Articles\delete_article_validation.js" />
-    <Content Include="Scripts\Validation\Articles\edit_article_validation.js" />
     <Content Include="Scripts\Validation\Contact\contact_validation.js" />
+    <Content Include="Views\Home\Articles.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -267,7 +267,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Articles.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -285,6 +284,7 @@
     <Content Include="Views\Information\LessonsScheduleOlderClasses.cshtml" />
     <Content Include="Views\Home\ContactEditMode.cshtml" />
     <Content Include="Views\Home\_AddArticlePartial.cshtml" />
+    <Content Include="Views\Home\_EditArticlePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

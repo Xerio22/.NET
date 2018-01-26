@@ -10,5 +10,11 @@ namespace SzkolaWebApp.Models
         public bool IsUserAuthenticated { get; set; }
         public string TitleErrorMessage { get; set; }
         public string ContentErrorMessage { get; set; }
+        public HeaderModes HeaderMode { get; set; }
+    }
+
+    public enum HeaderModes
+    {
+        ADD, EDIT
     }
 }

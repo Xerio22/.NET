@@ -1,0 +1,37 @@
+﻿@model SzkolaWebApp.Models.ArticlesViewModel
+
+<section class="site-element site-content add-article">
+    <header class="add-article-header">
+        <h3 class="add-article-header-text">Edytuj wpis</h3>
+    </header>
+    <div class="add-article-body">
+        @using (Html.BeginForm("EditArticle", "Home", FormMethod.Post, new { @class = "add-article-form", name = "add-article-form", autocomplete = "off" }))
+        {
+            @Html.HiddenFor(model => model.Article.ArticleId)
+            @Html.HiddenFor(model => model.HeaderMode)
+
+            <div class="validation-error" id="title-error-message">@Html.DisplayFor(model => model.TitleErrorMessage)</div>
+            @Html.TextBoxFor(model => model.Article.Title, htmlAttributes: new { id = "article-title", placeholder = "Tytuł" })
+
+            <div class="validation-error" id="content-error-message">@Html.DisplayFor(model => model.ContentErrorMessage)</div>
+            @Html.TextAreaFor(model => model.Article.Content, htmlAttributes: new { id = "article-content", onkeyup = "textAreaAdjust(this)" })
+
+            <button id="add-article-upload-img">
+                @if (Model.Article.Photos.Count == 0)
+                {
+                    @:Dodaj zdjęcia
+                }
+                else
+                {
+                    @:Zarządzaj zdjęciami
+                }
+            </button>
+
+            <button class="article-cancel-edit" onclick="location.href='@Url.Action("Articles", "Home")'">Anuluj</button>
+
+            <input type="submit" value="Aktualizuj">
+            
+            <div class="clear"></div>
+        }
+    </div>
+</section>

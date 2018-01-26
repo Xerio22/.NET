@@ -14,17 +14,12 @@ namespace SzkolaWebApp.Controllers
         public ActionResult Articles()
         {
             ViewBag.Title = "Aktualności";
-            var model = new ArticlesViewModel();
-            
-            var isUserAuthenticated = Session["UserCredentials"] != null;
-
-            //if (isUserAuthenticated)
-            //{
-            //    model.Article = new Article();
-            //}
-
-            model.IsUserAuthenticated = isUserAuthenticated;
-            model.Articles = GetArticlesListFromDatabase();
+            var model = new ArticlesViewModel
+            {
+                IsUserAuthenticated = Session["UserCredentials"] != null,
+                Articles = GetArticlesListFromDatabase(),
+                HeaderMode = HeaderModes.ADD
+            };
 
             return View(model);
         }
@@ -47,6 +42,53 @@ namespace SzkolaWebApp.Controllers
             model.Article.PublicationDate = DateTime.Now;
 
             _context.Articles.Add(model.Article);
+            _context.SaveChanges();
+
+            return RedirectToAction("Articles");
+        }
+
+
+        public ActionResult EditArticle(int articleId)
+        {
+            var article = _context.Articles.First(art => art.ArticleId == articleId);
+
+            ArticlesViewModel model = new ArticlesViewModel()
+            {
+                Articles = GetArticlesListFromDatabase(),
+                Article = article,
+                IsUserAuthenticated = Session["UserCredentials"] != null,
+                HeaderMode = HeaderModes.EDIT
+            };
+
+            return View("Articles", model);
+        }
+
+
+        [HttpPost]
+        public ActionResult EditArticle(ArticlesViewModel model)
+        {
+            bool isModelValid = CheckArticleModelValidity(model);
+
+            if (!isModelValid)
+            {
+                model.IsUserAuthenticated = Session["UserCredentials"] != null;
+                model.Articles = GetArticlesListFromDatabase();
+                return View("Articles", model);
+            }
+
+            var articleToUpdate = _context.Articles.First(art => art.ArticleId == model.Article.ArticleId);
+            articleToUpdate.Title = model.Article.Title;
+            articleToUpdate.Content = model.Article.Content;
+            _context.SaveChanges();
+
+            return RedirectToAction("Articles");
+        }
+
+        
+        public ActionResult DeleteArticle(int articleId)
+        {
+            var articleToRemove = _context.Articles.First(art => art.ArticleId == articleId);
+            _context.Articles.Remove(articleToRemove);
             _context.SaveChanges();
 
             return RedirectToAction("Articles");
@@ -82,6 +124,7 @@ namespace SzkolaWebApp.Controllers
 
             return validationResult;
         }
+
 
         public ActionResult History()
         {
