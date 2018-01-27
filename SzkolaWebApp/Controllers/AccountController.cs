@@ -19,9 +19,14 @@ namespace SzkolaWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(LoginViewModel model)
+        public ActionResult Register(AccountViewModel model)
         {
             ViewBag.Title = "Rejestracja";
+            
+            if(!IsAccountModelValid(model))
+            {   
+                return View(model);
+            }
 
             using (var _context = new SchoolEntities())
             {
@@ -29,7 +34,7 @@ namespace SzkolaWebApp.Controllers
 
                 if (isUserWithThatNicknameExists)
                 {
-                    model.ErrorMessage = "Użytkownik o takiej nazwie już istnieje";
+                    model.UsernameErrorMessage = "Użytkownik o takiej nazwie już istnieje";
                     return View(model);
                 }
                 else
@@ -63,9 +68,14 @@ namespace SzkolaWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
+        public ActionResult Login(AccountViewModel model)
         {
             ViewBag.Title = "Logowanie";
+
+            if (!IsAccountModelValid(model))
+            {
+                return View(model);
+            }
 
             if (Session["UserCredentials"] == null)
             {
@@ -87,19 +97,49 @@ namespace SzkolaWebApp.Controllers
                         }
                         else
                         {
-                            model.ErrorMessage = "Wprowadzono nieprawidłowe dane logowania";
+                            model.ErrorMessage = "~ Wprowadzono nieprawidłowe dane logowania";
                             return View(model);
                         }
                     }
                     else
                     {
-                        model.ErrorMessage = "Wprowadzono nieprawidłowe dane logowania";
+                        model.ErrorMessage = "~ Wprowadzono nieprawidłowe dane logowania";
                         return View(model);
                     }
                 }
             }
 
             return RedirectToAction("Articles", "Home");
+        }
+
+
+        private bool IsAccountModelValid(AccountViewModel model)
+        {
+            bool validationResult = true;
+
+            if (string.IsNullOrEmpty(model.Credentials.Username))
+            {
+                model.UsernameErrorMessage = "Nazwa użytkownika nie może być pusta";
+                validationResult = false;
+            }
+            else if (model.Credentials.Username.Length > 20)
+            {
+                model.UsernameErrorMessage = "Wprowadzona nazwa użytkownika jest za długa";
+                validationResult = false;
+            }
+
+            if (string.IsNullOrEmpty(model.Credentials.Password) || model.Credentials.Password.Length < 5)
+            {
+                model.PasswordErrorMessage = "Hasło musi składać się z przynajmniej 5 znaków";
+                validationResult = false;
+            }
+            else if (model.Credentials.Password.Length > 4000)
+            {
+                model.PasswordErrorMessage = "Hasło nie może mieć więcej niż 4000 znaków";
+                validationResult = false;
+            }
+
+            return validationResult;
         }
 
 

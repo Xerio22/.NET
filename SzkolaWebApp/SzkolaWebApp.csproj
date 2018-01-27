@@ -164,7 +164,7 @@
     <Compile Include="Models\ArticlesViewModel.cs" />
     <Compile Include="Models\ContentEditViewModel.cs" />
     <Compile Include="Models\IAuthentication.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

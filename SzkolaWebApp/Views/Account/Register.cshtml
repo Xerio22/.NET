@@ -1,4 +1,4 @@
-﻿@model SzkolaWebApp.Models.LoginViewModel
+﻿@model SzkolaWebApp.Models.AccountViewModel
 
 @section styles {
     @Styles.Render("~/Content/css/content.css")
@@ -9,22 +9,28 @@
     <div class="content-wrapper">
         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "todo-form", role = "form" }))
         {
-            if (Model != null)
-            {
-                <p>
-                    @Model.ErrorMessage
-                </p>
-            }
-
             @Html.AntiForgeryToken()
+
+            <p class = "validation-error">
+                @Html.DisplayFor(model => model.ErrorMessage)
+            </p>
+         
             <p>
                 @Html.LabelFor(m => m.Credentials.Username)
                 @Html.TextBoxFor(m => m.Credentials.Username, new { id = "register-username" })
+                <span class="validation-error">
+                    @Html.DisplayFor(model => model.UsernameErrorMessage)
+                </span>
             </p>
+
             <p>
                 @Html.LabelFor(m => m.Credentials.Password)
                 @Html.PasswordFor(m => m.Credentials.Password)
+                <span class="validation-error">
+                    @Html.DisplayFor(model => model.PasswordErrorMessage)
+                </span>
             </p>
+            
             <p>
                 <input type="submit" value="Zarejestruj">
             </p>
