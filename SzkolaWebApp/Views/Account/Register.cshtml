@@ -7,26 +7,26 @@
 <section class="site-element site-content content">
     <h2>@ViewBag.Title</h2>
     <div class="content-wrapper">
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "todo-form", role = "form" }))
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "register-form", role = "form" }))
         {
             @Html.AntiForgeryToken()
 
-            <p class = "validation-error">
+            <p class = "validation-error" id="register-credentials-error">
                 @Html.DisplayFor(model => model.ErrorMessage)
             </p>
          
             <p>
                 @Html.LabelFor(m => m.Credentials.Username)
                 @Html.TextBoxFor(m => m.Credentials.Username, new { id = "register-username" })
-                <span class="validation-error">
+                <span class="validation-error" id="register-username-error-message">
                     @Html.DisplayFor(model => model.UsernameErrorMessage)
                 </span>
             </p>
 
             <p>
                 @Html.LabelFor(m => m.Credentials.Password)
-                @Html.PasswordFor(m => m.Credentials.Password)
-                <span class="validation-error">
+                @Html.PasswordFor(m => m.Credentials.Password, new { id = "register-password" })
+                <span class="validation-error" id="register-password-error-message">
                     @Html.DisplayFor(model => model.PasswordErrorMessage)
                 </span>
             </p>
