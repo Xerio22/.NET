@@ -288,9 +288,10 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
     width: 30%;
 }
 
-/*TODO*/
-.article-cancel-edit {
- 
+#article-cancel-edit {
+    width: 6em;
+    float: right;
+    margin-right: 1em;
 }
 
 .clear {

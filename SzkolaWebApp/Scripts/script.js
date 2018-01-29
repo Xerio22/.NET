@@ -6,3 +6,11 @@ function textAreaAdjust(ta) {
 $('.add-article-header').click(function () {
     $(".add-article-body").slideToggle();
 });
+
+$(function () {
+    var path = window.location.pathname;
+
+    if (path.startsWith("/Home/Edit")) {
+        $('.add-article-body').slideToggle();
+    }
+});
