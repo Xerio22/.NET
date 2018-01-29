@@ -11,6 +11,7 @@ namespace SzkolaWebApp.Controllers
 {
     public class GalleryController : Controller
     {
+        private static string[] validExtensions = { ".png", ".jpg", ".jpeg", ".gif" };
         private readonly SchoolEntities _context = new SchoolEntities();
 
         public ActionResult PhotoLibrary()
@@ -42,14 +43,13 @@ namespace SzkolaWebApp.Controllers
 
         private bool IsFileValid(HttpPostedFile file, PhotosViewModel model)
         {
-            if(file == null || file.ContentLength <= 0)
+            if(IsFileEmpty(file))
             {
                 model.FileErrorMessage = "Wstawianie pliku nie powiodło się";
                 return false;
             }
 
-            string extension = Path.GetExtension(file.FileName);
-            if (extension != ".png" && extension != ".jpg" && extension != "jpeg" && extension != "gif")
+            if (!HasValidExtension(file))
             {
                 model.ExtensionErrorMessage = "Plik ma nieprawidłowe rozszerzenie. " +
                     "Dozwolone rozszerzenia wstawianych obrazów to: .jpg, .jpeg, .png, .gif";
@@ -57,7 +57,32 @@ namespace SzkolaWebApp.Controllers
                 return false;
             }
 
+            if (IsFileAlreadyExists(file))
+            {
+                model.FileErrorMessage = "Plik o takiej nazwie już istnieje";
+                return false;
+            }
+
             return true;
+        }
+
+        private bool IsFileEmpty(HttpPostedFile file)
+        {
+            return file == null || file.ContentLength <= 0;
+        }
+
+        private bool HasValidExtension(HttpPostedFile file)
+        {
+            string extension = Path.GetExtension(file.FileName);
+            return validExtensions.Any(ext => ext == extension);
+        }
+
+        private bool IsFileAlreadyExists(HttpPostedFile file)
+        {
+            var fileName = Path.GetFileName(file.FileName);
+            var path = Path.Combine(Server.MapPath("~/Content/UploadedPhotos/"), fileName);
+
+            return System.IO.File.Exists(path);
         }
 
 
