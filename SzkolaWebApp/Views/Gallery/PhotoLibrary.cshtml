@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SzkolaWebApp.DAL.Photo>
+
+@{
+    ViewBag.Title = "Galeria zdjęć";
+}
+
+<h2>PictureLibrary</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Link)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Link)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PhotoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PhotoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PhotoId })
+        </td>
+    </tr>
+}
+
+</table>

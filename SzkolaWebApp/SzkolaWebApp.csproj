@@ -166,6 +166,7 @@
     <Compile Include="Models\ContentEditViewModel.cs" />
     <Compile Include="Models\IAuthentication.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\PhotosViewModel.cs" />
     <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -286,11 +287,11 @@
     <Content Include="Views\Home\ContactEditMode.cshtml" />
     <Content Include="Views\Home\_AddArticlePartial.cshtml" />
     <Content Include="Views\Home\_EditArticlePartial.cshtml" />
+    <Content Include="Views\Gallery\PhotoLibrary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\UploadedImages\" />
-    <Folder Include="Views\Gallery\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
