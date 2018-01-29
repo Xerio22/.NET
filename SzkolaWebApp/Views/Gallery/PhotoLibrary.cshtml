@@ -4,30 +4,12 @@
     ViewBag.Title = "Galeria zdjęć";
 }
 
-<h2>PictureLibrary</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Link)
-        </th>
-        <th></th>
-    </tr>
+<h2>@ViewBag.Title</h2>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Link)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PhotoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PhotoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PhotoId })
-        </td>
-    </tr>
-}
+    @Html.DisplayFor(modelItem => item.Link)
+    
+    <img src="@item" />
 
-</table>
+    @Html.ActionLink("Delete", "DeletePhoto", new { photoId=item.PhotoId })
+}
