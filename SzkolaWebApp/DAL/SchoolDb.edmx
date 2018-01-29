@@ -20,7 +20,8 @@
             <PropertyRef Name="PhotoId" />
           </Key>
           <Property Name="PhotoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Link" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Link" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="PhotoInArticle">
           <Key>
@@ -146,8 +147,9 @@
             <PropertyRef Name="PhotoId" />
           </Key>
           <Property Name="PhotoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Link" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Articles" Relationship="Self.PhotoInArticle" FromRole="Photo" ToRole="Article" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
@@ -242,6 +244,7 @@
           <EntitySetMapping Name="Photos">
             <EntityTypeMapping TypeName="SchoolDbContext.Photo">
               <MappingFragment StoreEntitySet="Photo">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
               </MappingFragment>

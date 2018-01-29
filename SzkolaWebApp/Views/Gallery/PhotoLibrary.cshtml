@@ -1,15 +1,36 @@
-﻿@model IEnumerable<SzkolaWebApp.DAL.Photo>
+﻿@model SzkolaWebApp.Models.GalleryViewModel
+@using System.IO
 
 @{
     ViewBag.Title = "Galeria zdjęć";
 }
 
+@section styles
+{
+    <link href="~/Content/css/PhotoLibrary/photo-library.css" rel="stylesheet" />
+}
+
 <h2>@ViewBag.Title</h2>
 
-@foreach (var item in Model) {
-    @Html.DisplayFor(modelItem => item.Link)
-    
-    <img src="@item" />
+@using (Html.BeginForm("UploadPhotos", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+    @Html.TextBoxFor(model => model.UploadedPhotos, new { type = "file", multiple = "multiple", accept = "image/*" } )
 
-    @Html.ActionLink("Delete", "DeletePhoto", new { photoId=item.PhotoId })
+    <input type="submit" value="Wyślij"/>
+}
+
+
+<br />
+<br />
+<br />
+
+@Html.DisplayFor(model => model.FileErrorMessage)
+@Html.DisplayFor(model => model.ExtensionErrorMessage)
+
+@foreach (var photo in Model.Photos) {
+    @Html.DisplayFor(modelItem => photo.FileName)
+
+    <img src="@Url.Content("~/Content/UploadedPhotos/" + photo.FileName)" />
+
+    @Html.ActionLink("Delete", "DeletePhoto", new { photoId = photo.PhotoId })
 }

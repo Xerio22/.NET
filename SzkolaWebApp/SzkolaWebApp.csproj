@@ -183,6 +183,7 @@
     <Content Include="Content\css\informacje\meetings.css" />
     <Content Include="Content\css\informacje\events.css" />
     <Content Include="Content\css\contact.css" />
+    <Content Include="Content\css\PhotoLibrary\photo-library.css" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\images\10bcg.png" />
@@ -291,7 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\UploadedImages\" />
+    <Folder Include="Content\UploadedPhotos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

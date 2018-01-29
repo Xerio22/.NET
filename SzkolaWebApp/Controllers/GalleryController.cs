@@ -17,21 +17,22 @@ namespace SzkolaWebApp.Controllers
         public ActionResult PhotoLibrary()
         {
             var photos = _context.Photos.ToList();
-            return View(photos);
+            return View(new GalleryViewModel { Photos = photos });
         }
 
 
         [HttpPost]
-        public ActionResult UploadPhoto(GalleryViewModel model)
+        public ActionResult UploadPhotos(GalleryViewModel model)
         {
-            var uploadedFiles = Request.Files;
+            var uploadedFiles = model.UploadedPhotos;
             if (uploadedFiles.Count > 0)
             {
-                foreach (HttpPostedFile file in Request.Files)
+                foreach (HttpPostedFileBase file in uploadedFiles)
                 {
                     if (!IsFileValid(file, model))
                     {
-                        return View(model);
+                        model.Photos = _context.Photos.ToList();
+                        return View("PhotoLibrary", model);
                     }
 
                     SaveFileInLibrary(file);
@@ -42,7 +43,7 @@ namespace SzkolaWebApp.Controllers
         }
 
 
-        private bool IsFileValid(HttpPostedFile file, GalleryViewModel model)
+        private bool IsFileValid(HttpPostedFileBase file, GalleryViewModel model)
         {
             if(IsFileEmpty(file))
             {
@@ -68,20 +69,20 @@ namespace SzkolaWebApp.Controllers
         }
 
 
-        private bool IsFileEmpty(HttpPostedFile file)
+        private bool IsFileEmpty(HttpPostedFileBase file)
         {
             return file == null || file.ContentLength <= 0;
         }
 
 
-        private bool HasValidExtension(HttpPostedFile file)
+        private bool HasValidExtension(HttpPostedFileBase file)
         {
             string extension = Path.GetExtension(file.FileName);
             return validExtensions.Any(ext => ext == extension);
         }
 
 
-        private bool IsFileAlreadyExists(HttpPostedFile file)
+        private bool IsFileAlreadyExists(HttpPostedFileBase file)
         {
             var fileName = Path.GetFileName(file.FileName);
             var path = Path.Combine(Server.MapPath(pathToPhotosStorage), fileName);
@@ -90,14 +91,14 @@ namespace SzkolaWebApp.Controllers
         }
 
 
-        private void SaveFileInLibrary(HttpPostedFile file)
+        private void SaveFileInLibrary(HttpPostedFileBase file)
         {
             var fileName = Path.GetFileName(file.FileName);
             var path = Path.Combine(Server.MapPath(pathToPhotosStorage), fileName);
 
             // Save file in server's storage and put link to it in database
             file.SaveAs(path);
-            _context.Photos.Add(new Photo() { Link = path });
+            _context.Photos.Add(new Photo() { Link = path, FileName = fileName });
             _context.SaveChanges();
         }
 
@@ -105,6 +106,9 @@ namespace SzkolaWebApp.Controllers
         public ActionResult DeletePhoto(int photoId)
         {
             var photoToDelete = _context.Photos.First(p => p.PhotoId == photoId);
+
+            System.IO.File.Delete(photoToDelete.Link);
+
             _context.Photos.Remove(photoToDelete);
             _context.SaveChanges();
 

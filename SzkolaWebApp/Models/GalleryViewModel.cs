@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SzkolaWebApp.DAL;
 
 namespace SzkolaWebApp.Models
 {
@@ -9,5 +10,7 @@ namespace SzkolaWebApp.Models
     {
         public string ExtensionErrorMessage { get; set; }
         public string FileErrorMessage { get; set; }
+        public IList<Photo> Photos { get; set; }
+        public IList<HttpPostedFileBase> UploadedPhotos { get; set; }
     }
 }
