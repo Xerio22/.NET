@@ -1,0 +1,21 @@
+﻿@model SzkolaWebApp.Models.AddParagraphToPageViewModel
+@{
+    ViewBag.Title = "AddParagraphToPage";
+}
+
+<h2>AddParagraphToPage</h2>
+
+<!-- Site content -->
+<section class="site-element site-content content">
+    <h2>@ViewBag.Title</h2>
+    <div class="content-wrapper">
+        @using (Html.BeginForm("AddParagraphToPage", "Home", FormMethod.Post))
+        {
+            @Html.LabelFor(model => model.Page.PageId)
+            @Html.EditorFor(model => model.Page.PageId)
+            @Html.LabelFor(model => model.Paragraph.ParagraphId)
+            @Html.EditorFor(model => model.Paragraph.ParagraphId)
+            <input type="submit" value="dodaj" />
+        }
+    </div>
+</section>

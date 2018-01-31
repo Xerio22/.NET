@@ -15,6 +15,28 @@
           <Property Name="PublicationDate" Type="datetime" Nullable="false" />
           <Property Name="RegisteredUserId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="PageId" />
+          </Key>
+          <Property Name="PageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paragraph">
+          <Key>
+            <PropertyRef Name="ParagraphId" />
+          </Key>
+          <Property Name="ParagraphId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParagraphOnPage">
+          <Key>
+            <PropertyRef Name="PageId" />
+            <PropertyRef Name="ParagraphId" />
+          </Key>
+          <Property Name="PageId" Type="int" Nullable="false" />
+          <Property Name="ParagraphId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="PhotoId" />
@@ -28,7 +50,7 @@
             <PropertyRef Name="PhotoId" />
             <PropertyRef Name="ArticleId" />
           </Key>
-          <Property Name="PhotoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhotoId" Type="int" Nullable="false" />
           <Property Name="ArticleId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RegisteredUser">
@@ -54,6 +76,30 @@
           <Property Name="UserTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <Association Name="FK_180">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="ParagraphOnPage" Type="Self.ParagraphOnPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="PageId" />
+            </Principal>
+            <Dependent Role="ParagraphOnPage">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_184">
+          <End Role="Paragraph" Type="Self.Paragraph" Multiplicity="1" />
+          <End Role="ParagraphOnPage" Type="Self.ParagraphOnPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paragraph">
+              <PropertyRef Name="ParagraphId" />
+            </Principal>
+            <Dependent Role="ParagraphOnPage">
+              <PropertyRef Name="ParagraphId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Article_Photo">
           <End Role="Article" Type="Self.Article" Multiplicity="1" />
           <End Role="PhotoInArticle" Type="Self.PhotoInArticle" Multiplicity="*" />
@@ -104,11 +150,22 @@
         </Association>
         <EntityContainer Name="SchoolDbContextStoreContainer">
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paragraph" EntityType="Self.Paragraph" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParagraphOnPage" EntityType="Self.ParagraphOnPage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhotoInArticle" EntityType="Self.PhotoInArticle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegisteredUser" EntityType="Self.RegisteredUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiteContent" EntityType="Self.SiteContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_180" Association="Self.FK_180">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="ParagraphOnPage" EntitySet="ParagraphOnPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_184" Association="Self.FK_184">
+            <End Role="Paragraph" EntitySet="Paragraph" />
+            <End Role="ParagraphOnPage" EntitySet="ParagraphOnPage" />
+          </AssociationSet>
           <AssociationSet Name="FK_Article_Photo" Association="Self.FK_Article_Photo">
             <End Role="Article" EntitySet="Article" />
             <End Role="PhotoInArticle" EntitySet="PhotoInArticle" />
@@ -216,6 +273,12 @@
             <End Role="Photo" EntitySet="Photos" />
           </AssociationSet>
           <EntitySet Name="SiteContents" EntityType="SchoolDbContext.SiteContent" />
+          <EntitySet Name="Pages" EntityType="SchoolDbContext.Page" />
+          <EntitySet Name="Paragraphs" EntityType="SchoolDbContext.Paragraph" />
+          <AssociationSet Name="ParagraphOnPage" Association="SchoolDbContext.ParagraphOnPage">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="Paragraph" EntitySet="Paragraphs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="SiteContent">
           <Key>
@@ -224,6 +287,26 @@
           <Property Name="SiteContentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Content" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="PageId" />
+          </Key>
+          <Property Name="PageId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Paragraphs" Relationship="SchoolDbContext.ParagraphOnPage" FromRole="Page" ToRole="Paragraph" />
+        </EntityType>
+        <EntityType Name="Paragraph">
+          <Key>
+            <PropertyRef Name="ParagraphId" />
+          </Key>
+          <Property Name="ParagraphId" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pages" Relationship="SchoolDbContext.ParagraphOnPage" FromRole="Paragraph" ToRole="Page" />
+        </EntityType>
+        <Association Name="ParagraphOnPage">
+          <End Type="SchoolDbContext.Page" Role="Page" Multiplicity="*" />
+          <End Type="SchoolDbContext.Paragraph" Role="Paragraph" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -284,6 +367,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="SchoolDbContext.Page">
+              <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paragraphs">
+            <EntityTypeMapping TypeName="SchoolDbContext.Paragraph">
+              <MappingFragment StoreEntitySet="Paragraph">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ParagraphId" ColumnName="ParagraphId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ParagraphOnPage" TypeName="SchoolDbContext.ParagraphOnPage" StoreEntitySet="ParagraphOnPage">
+            <EndProperty Name="Paragraph">
+              <ScalarProperty Name="ParagraphId" ColumnName="ParagraphId" />
+            </EndProperty>
+            <EndProperty Name="Page">
+              <ScalarProperty Name="PageId" ColumnName="PageId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

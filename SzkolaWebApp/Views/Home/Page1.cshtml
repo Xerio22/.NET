@@ -1,0 +1,22 @@
+﻿@model SzkolaWebApp.DAL.Page
+@{
+    ViewBag.Title = "Page1";
+}
+
+<h2>Page1</h2>
+<!-- Site content -->
+<section class="site-element site-content content">
+    <h2>@ViewBag.Title</h2>
+    <div class="content-wrapper">
+        @foreach (var pag in Model.Paragraphs)
+        {   <div>
+                <p>
+                    @pag.Content
+                </p>
+                <a href="@Url.Action("RemoveParagraphFromPage", "Home", new { idPage = 1, idParagraph = pag.ParagraphId })">Usuń</a>
+            </div>
+            <br />
+            <br />
+        }
+    </div>
+</section>

@@ -13,6 +13,9 @@
         <AssociationConnector Association="SchoolDbContext.FK_RegisteredUser_UserType" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDbContext.PhotoInArticle" ManuallyRouted="false" />
         <EntityTypeShape EntityType="SchoolDbContext.SiteContent" Width="1.5" PointX="4.25" PointY="4.5" />
+        <EntityTypeShape EntityType="SchoolDbContext.Page" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="SchoolDbContext.Paragraph" Width="1.5" PointX="3" PointY="6.875" />
+        <AssociationConnector Association="SchoolDbContext.ParagraphOnPage" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

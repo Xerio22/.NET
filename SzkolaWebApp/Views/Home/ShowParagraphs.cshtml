@@ -1,0 +1,19 @@
+﻿@model IList<SzkolaWebApp.DAL.Paragraph>
+
+
+<h2>Page1</h2>
+<!-- Site content -->
+<section class="site-element site-content content">
+    <h2>@ViewBag.Title</h2>
+    <div class="content-wrapper">
+        @foreach (var pag in Model)
+        {   <div>
+            <p>
+                @pag.Content
+            </p>
+        </div>
+            <br />
+            <br />
+        }
+    </div>
+</section>

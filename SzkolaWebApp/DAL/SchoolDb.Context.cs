@@ -30,5 +30,7 @@ namespace SzkolaWebApp.DAL
         public virtual DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<SiteContent> SiteContents { get; set; }
+        public virtual DbSet<Page> Pages { get; set; }
+        public virtual DbSet<Paragraph> Paragraphs { get; set; }
     }
 }
