@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Microsoft.Ajax.Utilities;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,6 +19,14 @@ namespace SzkolaWebApp.Controllers
         {
             var photos = _context.Photos.ToList();
             return View(new GalleryViewModel { Photos = photos });
+        }
+
+
+        [HttpPost]
+        public ActionResult PhotoLibrary(Article article)
+        {
+            var photos = _context.Photos.ToList();
+            return View(new GalleryViewModel { Photos = photos, Article = article });
         }
 
 

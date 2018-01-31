@@ -29,6 +29,10 @@
         @using (Html.BeginForm("InsertPhotosToArticle", "Home", FormMethod.Post, new { name = "insert-photos-form" }))
         {
             <div class="center">
+                <input type="hidden" id="Article_ArticleId" name="Article.ArticleId" value="@Model.Article.ArticleId" />
+                <input type="hidden" id="Article_Title" name="Article.Title" value="@Model.Article.Title"/>
+                <input type="hidden" id="Article_Content" name="Article.Content" value="@Model.Article.Content" />
+
                 @foreach (var photo in Model.Photos)
                 {
                     <div class="img-container" name="img-container" id="@photo.PhotoId">

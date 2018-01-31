@@ -5,34 +5,43 @@
         <h3 class="add-article-header-text">Dodaj wpis</h3>
     </header>
     <div class="add-article-body">
-        @using (Html.BeginForm("AddArticle", "Home", FormMethod.Post, new { @class = "add-article-form", name = "add-article-form", autocomplete = "off" }))
-        {
-            <div class="validation-error" id="title-error-message">@Html.DisplayFor(model => model.TitleErrorMessage)</div>
-            @Html.TextBoxFor(model => model.Article.Title, htmlAttributes: new { id = "article-title", placeholder = "Tytuł" })
-
-            <div class="validation-error" id="content-error-message">@Html.DisplayFor(model => model.ContentErrorMessage)</div>
-            @Html.TextAreaFor(model => model.Article.Content, htmlAttributes: new { id = "article-content", onkeyup = "textAreaAdjust(this)" })
-
-            <a href="@Url.Action("PhotoLibrary", "Gallery")"><button id="add-article-upload-img" type="button">Dodaj zdjęcia</button></a>
-
-            <input type="submit" value="Wstaw">
-            <div class="clear"></div>
-
-            if (Model.PhotosToInsert != null)
+        <div class="add-article-form">
+            @using (Html.BeginForm("AddArticle", "Home", FormMethod.Post, new { name = "add-article-form", autocomplete = "off" }))
             {
-                <div class="inserted-photos-preview center">
-                    @for (int i = 0; i < Model.PhotosToInsert.Count; i++)
-                    {
-                        @Html.HiddenFor(m => Model.PhotosToInsert.ToList()[i].PhotoId, new { @Name = "PhotosToInsertIDs" } )
+                <div class="validation-error" id="title-error-message">@Html.DisplayFor(model => model.TitleErrorMessage)</div>
+                @Html.TextBoxFor(model => model.Article.Title, htmlAttributes: new { id = "article-title", placeholder = "Tytuł" })
 
-                        // wyswietlanie wstawionych zdjęć
-                        var photo = Model.PhotosToInsert.ToList()[i];
-                        <div class="img-container" name="img-container" id="@photo.PhotoId">
-                            <img src="@Url.Content("~/Content/UploadedPhotos/" + photo.FileName)" />
-                        </div>
-                    }
-                </div>
+                <div class="validation-error" id="content-error-message">@Html.DisplayFor(model => model.ContentErrorMessage)</div>
+                @Html.TextAreaFor(model => model.Article.Content, htmlAttributes: new { id = "article-content", onkeyup = "textAreaAdjust(this)" })
+                
+                if (Model.PhotosToInsert != null)
+                {
+                    <div class="inserted-photos-preview center">
+                        @for (int i = 0; i < Model.PhotosToInsert.Count; i++)
+                    {
+                            @Html.HiddenFor(m => Model.PhotosToInsert.ToList()[i].PhotoId, new { @Name = "PhotosToInsertIDs" })
+
+                            // wyswietlanie wstawionych zdjęć
+                            var photo = Model.PhotosToInsert.ToList()[i];
+                            <div class="img-container" name="img-container" id="@photo.PhotoId">
+                                <img src="@Url.Content("~/Content/UploadedPhotos/" + photo.FileName)" />
+                            </div>
+                        }
+                    </div>
+                }
             }
-        }
+
+            @using (Html.BeginForm("PhotoLibrary", "Gallery", FormMethod.Post, new { @Name = "pass-article-to-photo-library-form", @class = "add-article-form" }))
+            {
+                <input type="hidden" id="Article_ArticleId" name="Article.ArticleId" value="0" />
+                <input type="hidden" id="Article_Title" name="Article.Title" />
+                <input type="hidden" id="Article_Content" name="Article.Content" />
+
+                <button id="add-article-upload-img" type="button">Dodaj zdjęcia</button>
+            }
+
+            <input type="submit" id="add-article-submit" value="Wstaw">
+            <div class="clear"></div>
+        </div>
     </div>
 </section>

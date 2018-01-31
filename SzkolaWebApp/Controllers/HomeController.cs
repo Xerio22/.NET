@@ -25,15 +25,16 @@ namespace SzkolaWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertPhotosToArticle(ICollection<int> PhotosToInsertIDs)
+        public ActionResult InsertPhotosToArticle(InsertPhotosToArticleViewModel givenModel)
         {
-            var photosToInsert = _context.Photos.Where(photo => PhotosToInsertIDs.Contains(photo.PhotoId)).ToList();
+            var photosToInsert = _context.Photos.Where(photo => givenModel.PhotosToInsertIDs.Contains(photo.PhotoId)).ToList();
             
             var model = new ArticlesViewModel
             {
                 IsUserAuthenticated = Session["UserCredentials"] != null,
                 Articles = GetArticlesListFromDatabase(),
-                PhotosToInsert = photosToInsert
+                PhotosToInsert = photosToInsert,
+                Article = givenModel.Article
             };
             return View("Articles", model);
         }

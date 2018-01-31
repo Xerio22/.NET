@@ -1,4 +1,8 @@
 var imgIndex = 0;
+[...document.getElementsByClassName('gallery-image')].forEach(elem => {
+    var articleId = elem.name;
+    showDivs(0, articleId);
+});
 
 $('.gallery-left-arrow').click(function (e) {
     var articleId = this.classList.item(1);

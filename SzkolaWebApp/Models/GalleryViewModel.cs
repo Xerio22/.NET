@@ -12,5 +12,6 @@ namespace SzkolaWebApp.Models
         public string FileErrorMessage { get; set; }
         public IList<Photo> Photos { get; set; }
         public IList<HttpPostedFileBase> UploadedPhotos { get; set; }
+        public Article Article { get; set; }
     }
 }
