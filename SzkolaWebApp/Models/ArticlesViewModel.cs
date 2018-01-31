@@ -11,6 +11,8 @@ namespace SzkolaWebApp.Models
         public string TitleErrorMessage { get; set; }
         public string ContentErrorMessage { get; set; }
         public HeaderModes HeaderMode { get; set; }
+        public ICollection<int> PhotosToInsertIDs { get; set; }
+        public ICollection<Photo> PhotosToInsert { get; set; }
     }
 
     public enum HeaderModes

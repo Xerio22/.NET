@@ -302,6 +302,11 @@ nav a:hover, .nav-active a, .scroll-top-ico:hover {
     display: none;
 }
 
+.inserted-photos-preview {
+    margin-top: 1em;
+}
+
+
 .logout {
     width: 7em;
     margin: 0 auto;

@@ -3,6 +3,7 @@
 
 @section styles {
     @Styles.Render("~/Content/css/gallery.css")
+    <link href="~/Content/css/PhotoLibrary/photo-library.css" rel="stylesheet" />
 }
 
 <!-- Site content -->
@@ -52,14 +53,14 @@
                             <div class="gallery-main-view">
                                 @foreach (var photo in article.Photos)
                                 {
-                                    <img class="gallery-image" src="@photo.Link">
+                                    <img class="gallery-image" name="@article.ArticleId" src="@Url.Content("~/Content/UploadedPhotos/" + photo.FileName)">
                                 }
                             </div>
                             <div class="gallery-arrows">
-                                <div class="gallery-left-arrow">
+                                <div class="gallery-left-arrow @article.ArticleId">
                                     <i class="material-icons">keyboard_arrow_left</i>
                                 </div>
-                                <div class="gallery-right-arrow">
+                                <div class="gallery-right-arrow @article.ArticleId">
                                     <i class="material-icons">keyboard_arrow_right</i>
                                 </div>
                             </div>

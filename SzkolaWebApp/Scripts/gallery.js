@@ -1,16 +1,20 @@
-
 var imgIndex = 0;
-showDivs(imgIndex);
 
-$('.gallery-left-arrow').click(function(){plusDivs(-1)});
-$('.gallery-right-arrow').click(function(){plusDivs(1)});
+$('.gallery-left-arrow').click(function (e) {
+    var articleId = this.classList.item(1);
+    plusDivs(-1, articleId);
+});
+$('.gallery-right-arrow').click(function () {
+    var articleId = this.classList.item(1);
+    plusDivs(1, articleId);
+});
 
-function plusDivs(n) {
-    showDivs(imgIndex += n);
+function plusDivs(n, articleId) {
+    showDivs(imgIndex += n, articleId);
 }
 
-function showDivs(n) {
-  var images = document.getElementsByClassName("gallery-image");
+function showDivs(n, articleId) {
+  var images = document.getElementsByName(articleId);
   if (n > images.length) {imgIndex = 1}
   if (n < 1) {imgIndex = images.length}
 

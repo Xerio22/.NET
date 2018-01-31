@@ -50,6 +50,11 @@ function showArticleErrors() {
 }
 
 
+document.getElementById('add-article-upload-img').onclick = function () {
+    document.getElementById('tit').value = document.getElementById('article-title').value;
+    document.getElementById('cont').value = document.getElementById('article-content').value;
+}
+
 
 
 /*

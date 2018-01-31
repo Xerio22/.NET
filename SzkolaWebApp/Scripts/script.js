@@ -10,7 +10,7 @@ $('.add-article-header').click(function () {
 $(function () {
     var path = window.location.pathname;
 
-    if (path.startsWith("/Home/Edit")) {
+    if (path.startsWith("/Home/Edit") || path.startsWith("/Home/InsertPhotosToArticle")) {
         $('.add-article-body').slideToggle();
     }
 });

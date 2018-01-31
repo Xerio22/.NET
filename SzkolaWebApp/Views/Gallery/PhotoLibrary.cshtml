@@ -10,27 +10,44 @@
     <link href="~/Content/css/PhotoLibrary/photo-library.css" rel="stylesheet" />
 }
 
-<h2>@ViewBag.Title</h2>
+<!-- Site content -->
+<section class="site-element site-content content">
+    <h2>@ViewBag.Title</h2>
+    <div class="content-wrapper">
 
-@using (Html.BeginForm("UploadPhotos", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{ 
-    @Html.TextBoxFor(model => model.UploadedPhotos, new { type = "file", multiple = "multiple", accept = "image/*" } )
+        @using (Html.BeginForm("UploadPhotos", "Gallery", FormMethod.Post, new { name = "upload-photos-form", enctype = "multipart/form-data" }))
+        {
+            <p>
+                @Html.TextBoxFor(model => model.UploadedPhotos, new { type = "file", multiple = "multiple", accept = "image/*" })
+                <input type="submit" value="Wyślij" />
+            </p>
 
-    <input type="submit" value="Wyślij"/>
-}
+            <div id="FileErrorMessage">@Html.DisplayFor(model => model.FileErrorMessage)</div>
+            <div id="ExtensionErrorMessage">@Html.DisplayFor(model => model.ExtensionErrorMessage)</div>
+        }
+
+        @using (Html.BeginForm("InsertPhotosToArticle", "Home", FormMethod.Post, new { name = "insert-photos-form" }))
+        {
+            <div class="center">
+                @foreach (var photo in Model.Photos)
+                {
+                    <div class="img-container" name="img-container" id="@photo.PhotoId">
+                        <div class="caption">@Html.DisplayFor(modelItem => photo.FileName)</div>
+                        @Html.ActionLink("Delete", "DeletePhoto", new { photoId = photo.PhotoId })
+
+                        <img src="@Url.Content("~/Content/UploadedPhotos/" + photo.FileName)" />
+                        
+                        <input type="checkbox" id="PhotosToInsertIDs" name="PhotosToInsertIDs" value="@photo.PhotoId" class="hidden"/>
+                    </div>
+                }
+            </div>
+            
+            <input type="submit" value="sub" id="insert-photos-to-article"/>
+        }
+    </div>
+</section>
 
 
-<br />
-<br />
-<br />
-
-@Html.DisplayFor(model => model.FileErrorMessage)
-@Html.DisplayFor(model => model.ExtensionErrorMessage)
-
-@foreach (var photo in Model.Photos) {
-    @Html.DisplayFor(modelItem => photo.FileName)
-
-    <img src="@Url.Content("~/Content/UploadedPhotos/" + photo.FileName)" />
-
-    @Html.ActionLink("Delete", "DeletePhoto", new { photoId = photo.PhotoId })
+@section scripts {
+    <script src="~/Scripts/Validation/Gallery/photo-library.js"></script>
 }

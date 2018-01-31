@@ -13,10 +13,26 @@
             <div class="validation-error" id="content-error-message">@Html.DisplayFor(model => model.ContentErrorMessage)</div>
             @Html.TextAreaFor(model => model.Article.Content, htmlAttributes: new { id = "article-content", onkeyup = "textAreaAdjust(this)" })
 
-            <button id="add-article-upload-img">Dodaj zdjęcia</button>
-            <input type="submit" value="Wstaw">
+            <a href="@Url.Action("PhotoLibrary", "Gallery")"><button id="add-article-upload-img" type="button">Dodaj zdjęcia</button></a>
 
+            <input type="submit" value="Wstaw">
             <div class="clear"></div>
+
+            if (Model.PhotosToInsert != null)
+            {
+                <div class="inserted-photos-preview center">
+                    @for (int i = 0; i < Model.PhotosToInsert.Count; i++)
+                    {
+                        @Html.HiddenFor(m => Model.PhotosToInsert.ToList()[i].PhotoId, new { @Name = "PhotosToInsertIDs" } )
+
+                        // wyswietlanie wstawionych zdjęć
+                        var photo = Model.PhotosToInsert.ToList()[i];
+                        <div class="img-container" name="img-container" id="@photo.PhotoId">
+                            <img src="@Url.Content("~/Content/UploadedPhotos/" + photo.FileName)" />
+                        </div>
+                    }
+                </div>
+            }
         }
     </div>
 </section>

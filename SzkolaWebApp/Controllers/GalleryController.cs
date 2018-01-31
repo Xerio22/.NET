@@ -54,7 +54,7 @@ namespace SzkolaWebApp.Controllers
             if (!HasValidExtension(file))
             {
                 model.ExtensionErrorMessage = "Plik ma nieprawidłowe rozszerzenie. " +
-                    "Dozwolone rozszerzenia wstawianych obrazów to: " + validExtensions.ToString();
+                    "Dozwolone rozszerzenia wstawianych obrazów to: " + string.Join(", ", validExtensions.Select(v => v.ToString()));
 
                 return false;
             }

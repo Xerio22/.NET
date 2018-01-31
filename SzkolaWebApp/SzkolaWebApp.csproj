@@ -131,6 +131,12 @@
     <Compile Include="DAL\Article.cs">
       <DependentUpon>SchoolDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Page.cs">
+      <DependentUpon>SchoolDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Paragraph.cs">
+      <DependentUpon>SchoolDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\PasswordStorage.cs" />
     <Compile Include="DAL\Photo.cs">
       <DependentUpon>SchoolDb.tt</DependentUpon>
@@ -162,6 +168,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddParagraphToPageViewModel.cs" />
     <Compile Include="Models\ArticlesViewModel.cs" />
     <Compile Include="Models\ContentEditViewModel.cs" />
     <Compile Include="Models\IAuthentication.cs" />
@@ -253,6 +260,7 @@
     <Content Include="Scripts\Validation\Articles\add_article_validation.js" />
     <Content Include="Scripts\Validation\Articles\delete_article_validation.js" />
     <Content Include="Scripts\Validation\Contact\contact_validation.js" />
+    <Content Include="Scripts\Validation\Gallery\photo-library.js" />
     <Content Include="Views\Home\Articles.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -289,6 +297,11 @@
     <Content Include="Views\Home\_AddArticlePartial.cshtml" />
     <Content Include="Views\Home\_EditArticlePartial.cshtml" />
     <Content Include="Views\Gallery\PhotoLibrary.cshtml" />
+    <Content Include="Views\Home\AddParagraphToPage.cshtml" />
+    <Content Include="Views\Home\Page1.cshtml" />
+    <Content Include="Views\Home\Page2.cshtml" />
+    <Content Include="Views\Home\AddParagraph.cshtml" />
+    <Content Include="Views\Home\ShowParagraphs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,3 +1,31 @@
-﻿img {
-    width: 10em;
+﻿
+img {
+    margin-top: 0.5em;
+}
+
+.img-container, img {
+    width: 13em;
+    text-align: center;
+}
+
+.img-container {
+    width: 15em;
+    margin: 1em;
+    padding: .5em;
+    border: 2px solid grey;
+    border-radius: 10px;
+    z-index: 10;
+    transition: .3s;
+}
+
+.center {
+    margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 30%;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
 }

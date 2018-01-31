@@ -24,6 +24,20 @@ namespace SzkolaWebApp.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult InsertPhotosToArticle(ICollection<int> PhotosToInsertIDs)
+        {
+            var photosToInsert = _context.Photos.Where(photo => PhotosToInsertIDs.Contains(photo.PhotoId)).ToList();
+            
+            var model = new ArticlesViewModel
+            {
+                IsUserAuthenticated = Session["UserCredentials"] != null,
+                Articles = GetArticlesListFromDatabase(),
+                PhotosToInsert = photosToInsert
+            };
+            return View("Articles", model);
+        }
+
 
         [HttpPost]
         public ActionResult AddArticle(ArticlesViewModel model)
@@ -40,6 +54,14 @@ namespace SzkolaWebApp.Controllers
             var username = ((UserCredentials)Session["UserCredentials"]).Username;
             model.Article.RegisteredUser = _context.RegisteredUsers.First(user => user.Nickname == username);
             model.Article.PublicationDate = DateTime.Now;
+
+            if (model.PhotosToInsertIDs != null)
+            {
+                var photosToInsert = _context.Photos.Where(photo => model.PhotosToInsertIDs.Contains(photo.PhotoId)).ToList();
+
+                photosToInsert.ToList().ForEach(p => model.Article.Photos.Add(p));
+                _context.SaveChanges();
+            }
 
             _context.Articles.Add(model.Article);
             _context.SaveChanges();
@@ -202,6 +224,71 @@ namespace SzkolaWebApp.Controllers
                 _context.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        
+        public ActionResult Page1()
+        {
+            var page = _context.Pages.First(p => p.PageId == 1);
+
+            return View(page);
+        }
+
+        public ActionResult Page2()
+        {
+            var page = _context.Pages.First(p => p.PageId == 2);
+
+            return View(page);
+        }
+
+        public ActionResult ShowParagraphs()
+        {
+            var pars = _context.Paragraphs.ToList();
+
+            return View(pars);
+        }
+
+
+        public ActionResult AddParagraph()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddParagraph(Paragraph paragraph)
+        {
+            _context.Paragraphs.Add(paragraph);
+            _context.SaveChanges();
+
+            return RedirectToAction("ShowParagraphs");
+        }
+        
+        public ActionResult RemoveParagraphFromPage(int idPage, int idParagraph)
+        {
+            var page = _context.Pages.First(pag => pag.PageId == idPage);
+            var paragraph = _context.Paragraphs.First(par => par.ParagraphId == idParagraph);
+            page.Paragraphs.Remove(paragraph);
+            _context.SaveChanges();
+
+            return RedirectToAction("Page1");
+        }
+
+        public ActionResult AddParagraphToPage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddParagraphToPage(AddParagraphToPageViewModel model)
+        {
+            var page = _context.Pages.First(p => p.PageId == model.Page.PageId);
+            var parag = _context.Paragraphs.First(p => p.ParagraphId == model.Paragraph.ParagraphId);
+
+            page.Paragraphs.Add(parag);
+            _context.SaveChanges();
+
+            return View();
         }
     }
 }
