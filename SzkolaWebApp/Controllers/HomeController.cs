@@ -27,8 +27,13 @@ namespace SzkolaWebApp.Controllers
         [HttpPost]
         public ActionResult InsertPhotosToArticle(InsertPhotosToArticleViewModel givenModel)
         {
-            var photosToInsert = _context.Photos.Where(photo => givenModel.PhotosToInsertIDs.Contains(photo.PhotoId)).ToList();
-            
+            var photosToInsert = new List<Photo>();
+            try
+            {
+                photosToInsert = _context.Photos.Where(photo => givenModel.PhotosToInsertIDs.Contains(photo.PhotoId)).ToList();
+            }
+            catch (Exception ex){}
+
             var model = new ArticlesViewModel
             {
                 IsUserAuthenticated = Session["UserCredentials"] != null,
@@ -113,11 +118,11 @@ namespace SzkolaWebApp.Controllers
             articleToUpdate.Title = model.Article.Title;
             articleToUpdate.Content = model.Article.Content;
 
-            if(model.PhotosToInsertIDs != null && model.PhotosToInsertIDs.Count > 0)
-            {
-                articleToUpdate.Photos.Clear();
-                _context.SaveChanges();
+            // to reset photos before new inserts, and in case that user didn't selected any photo
+            articleToUpdate.Photos.Clear();
 
+            if (model.PhotosToInsertIDs != null && model.PhotosToInsertIDs.Count > 0)
+            {
                 var photosToInsert = _context.Photos.Where(photo => model.PhotosToInsertIDs.Contains(photo.PhotoId)).ToList();
                 photosToInsert.ToList().ForEach(p => articleToUpdate.Photos.Add(p));
             }

@@ -24,7 +24,7 @@
                             // wyswietlanie wstawionych zdjęć
                             var photo = Model.PhotosToInsert.ToList()[i];
                             <div class="img-container" name="img-container" id="@photo.PhotoId">
-                                <img src="@Url.Content("~/Content/UploadedPhotos/" + photo.FileName)" />
+                                <img src="@Url.Content(photo.Link)" />
                             </div>
                         }
                     </div>
