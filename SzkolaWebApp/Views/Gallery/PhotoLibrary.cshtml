@@ -29,19 +29,27 @@
         @using (Html.BeginForm("InsertPhotosToArticle", "Home", FormMethod.Post, new { name = "insert-photos-form" }))
         {
             <div class="center">
+                @if (Model.Article != null)
+                {
                 <input type="hidden" id="Article_ArticleId" name="Article.ArticleId" value="@Model.Article.ArticleId" />
                 <input type="hidden" id="Article_Title" name="Article.Title" value="@Model.Article.Title"/>
                 <input type="hidden" id="Article_Content" name="Article.Content" value="@Model.Article.Content" />
+                }
 
                 @foreach (var photo in Model.Photos)
                 {
                     <div class="img-container" name="img-container" id="@photo.PhotoId">
                         <div class="caption">@Html.DisplayFor(modelItem => photo.FileName)</div>
-                        @Html.ActionLink("Delete", "DeletePhoto", new { photoId = photo.PhotoId })
+                        @Html.ActionLink("Delete", "DeletePhoto", new { photoId = photo.PhotoId }, new { @Name = "delete-photo" })
 
                         <img src="@Url.Content("~/Content/UploadedPhotos/" + photo.FileName)" />
                         
-                        <input type="checkbox" id="PhotosToInsertIDs" name="PhotosToInsertIDs" value="@photo.PhotoId" class="hidden"/>
+                        <input type="checkbox" id="PhotosToInsertIDs" name="PhotosToInsertIDs" value="@photo.PhotoId" class="hidden" 
+                            @if (Model.PhotosInArticle != null && Model.PhotosInArticle.Contains(photo))
+                            {
+                                @:checked="checked"
+                            }
+                        />
                     </div>
                 }
             </div>

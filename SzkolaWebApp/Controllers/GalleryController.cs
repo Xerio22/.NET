@@ -25,8 +25,22 @@ namespace SzkolaWebApp.Controllers
         [HttpPost]
         public ActionResult PhotoLibrary(Article article)
         {
-            var photos = _context.Photos.ToList();
-            return View(new GalleryViewModel { Photos = photos, Article = article });
+            var photosInLibrary = _context.Photos.ToList();
+            var model = new GalleryViewModel {
+                Photos = photosInLibrary,
+                Article = article
+            };
+
+            // when call comes from edit
+            if (article.ArticleId != 0)
+            {
+                var photosInArticle = _context.Articles.Find(article.ArticleId).Photos;
+                if (photosInArticle != null && photosInArticle.Count > 0)
+                {
+                    model.PhotosInArticle = photosInArticle;
+                }
+            }
+            return View(model);
         }
 
 
@@ -70,7 +84,7 @@ namespace SzkolaWebApp.Controllers
 
             if (IsFileAlreadyExists(file))
             {
-                model.FileErrorMessage = "Plik o takiej nazwie już istnieje";
+                model.FileErrorMessage = "Niektóre z plików o wybranych nazwach istnieją już w galerii";
                 return false;
             }
 
@@ -116,10 +130,13 @@ namespace SzkolaWebApp.Controllers
         {
             var photoToDelete = _context.Photos.First(p => p.PhotoId == photoId);
 
-            System.IO.File.Delete(photoToDelete.Link);
+            
+                photoToDelete.Articles.ForEach(art => art.Photos.Remove(art.Photos.First(ph => ph.PhotoId == photoToDelete.PhotoId)));
+                _context.Photos.Remove(photoToDelete);
+                _context.SaveChanges();
 
-            _context.Photos.Remove(photoToDelete);
-            _context.SaveChanges();
+                System.IO.File.Delete(photoToDelete.Link);
+            
 
             return RedirectToAction("PhotoLibrary");
         }

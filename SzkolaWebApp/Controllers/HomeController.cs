@@ -36,6 +36,13 @@ namespace SzkolaWebApp.Controllers
                 PhotosToInsert = photosToInsert,
                 Article = givenModel.Article
             };
+
+            // if id is not 0 -> some article came from photo management
+            if(givenModel.Article != null && givenModel.Article.ArticleId != 0)
+            {
+                model.HeaderMode = HeaderModes.EDIT;
+            }
+
             return View("Articles", model);
         }
 
@@ -51,22 +58,25 @@ namespace SzkolaWebApp.Controllers
                 model.Articles = GetArticlesListFromDatabase();
                 return View("Articles", model);
             }
-            
-            var username = ((UserCredentials)Session["UserCredentials"]).Username;
-            model.Article.RegisteredUser = _context.RegisteredUsers.First(user => user.Nickname == username);
-            model.Article.PublicationDate = DateTime.Now;
 
-            if (model.PhotosToInsertIDs != null)
+            // in case that session would expire
+            if (((UserCredentials)Session["UserCredentials"]) != null)
             {
-                var photosToInsert = _context.Photos.Where(photo => model.PhotosToInsertIDs.Contains(photo.PhotoId)).ToList();
+                var username = ((UserCredentials)Session["UserCredentials"]).Username;
+                model.Article.RegisteredUser = _context.RegisteredUsers.First(user => user.Nickname == username);
+                model.Article.PublicationDate = DateTime.Now;
 
-                photosToInsert.ToList().ForEach(p => model.Article.Photos.Add(p));
+                if (model.PhotosToInsertIDs != null)
+                {
+                    var photosToInsert = _context.Photos.Where(photo => model.PhotosToInsertIDs.Contains(photo.PhotoId)).ToList();
+
+                    photosToInsert.ToList().ForEach(p => model.Article.Photos.Add(p));
+                    _context.SaveChanges();
+                }
+
+                _context.Articles.Add(model.Article);
                 _context.SaveChanges();
             }
-
-            _context.Articles.Add(model.Article);
-            _context.SaveChanges();
-
             return RedirectToAction("Articles");
         }
 
@@ -102,22 +112,32 @@ namespace SzkolaWebApp.Controllers
             var articleToUpdate = _context.Articles.First(art => art.ArticleId == model.Article.ArticleId);
             articleToUpdate.Title = model.Article.Title;
             articleToUpdate.Content = model.Article.Content;
+
+            if(model.PhotosToInsertIDs != null && model.PhotosToInsertIDs.Count > 0)
+            {
+                articleToUpdate.Photos.Clear();
+                _context.SaveChanges();
+
+                var photosToInsert = _context.Photos.Where(photo => model.PhotosToInsertIDs.Contains(photo.PhotoId)).ToList();
+                photosToInsert.ToList().ForEach(p => articleToUpdate.Photos.Add(p));
+            }
+
             _context.SaveChanges();
 
             return RedirectToAction("Articles");
         }
-
         
         public ActionResult DeleteArticle(int articleId)
         {
             var articleToRemove = _context.Articles.First(art => art.ArticleId == articleId);
+
+            articleToRemove.Photos.Clear();
             _context.Articles.Remove(articleToRemove);
             _context.SaveChanges();
 
             return RedirectToAction("Articles");
         }
-
-
+        
         // zrobione w ten sposób, aby wyświetlać wszystkie błędy bezpośrednio
         private bool CheckArticleModelValidity(ArticlesViewModel model)
         {

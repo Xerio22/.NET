@@ -43,26 +43,28 @@ function clearErrors() {
     extensionErrorMessage.innerHTML = '';
 }
 
-var toInsert = [];
+
 document.getElementsByName('img-container').forEach(c => {
     c.onclick = function () {
         if (c.style.borderColor === "green") {
             c.children["PhotosToInsertIDs"].checked = "";
             c.style.border = "2px solid grey";
-
-            console.log(toInsert);
-            var idx = toInsert.findIndex(elem => { elem == c.id });
-            toInsert.splice(idx, 1);
-            console.log(toInsert);
         }
         else {
             c.children["PhotosToInsertIDs"].checked = "checked";
             c.style.border = "4px solid green";
-
-            console.log(toInsert);
-            toInsert.push(c.id);
-            console.log(toInsert);
         }
+    }
+
+    if (c.children["PhotosToInsertIDs"].checked === true) {
+        c.style.border = "4px solid green";
+        console.log('changed color');
+    }
+});
+
+document.getElementsByName('delete-photo').forEach(elem => {
+    elem.onclick = function (e) {
+        return confirm('Usunięcie zdjęcia spowoduje usunięcie go ze wszystkich artykułów, czy jesteś pewien, że chcesz je usunąć?');
     }
 });
 

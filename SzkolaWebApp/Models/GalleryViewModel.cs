@@ -13,5 +13,6 @@ namespace SzkolaWebApp.Models
         public IList<Photo> Photos { get; set; }
         public IList<HttpPostedFileBase> UploadedPhotos { get; set; }
         public Article Article { get; set; }
+        public ICollection<Photo> PhotosInArticle { get; set; }
     }
 }

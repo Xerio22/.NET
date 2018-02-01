@@ -9,6 +9,14 @@
 <!-- Site content -->
 @if (Model.IsUserAuthenticated)
 {
+    @*<section class="site-element site-content add-article">
+        <a href="@Url.Action("PhotoLibrary", "Gallery")">
+            <header class="add-article-header" onclick="return null">
+                <h3 class="add-article-header-text">Galeria zdjęć</h3>
+            </header>
+        </a>
+    </section>*@
+
     if (Model.HeaderMode == HeaderModes.ADD)
     {
         @Html.Partial("_AddArticlePartial", Model)

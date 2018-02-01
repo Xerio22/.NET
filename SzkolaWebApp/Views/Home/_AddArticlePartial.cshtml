@@ -18,7 +18,7 @@
                 {
                     <div class="inserted-photos-preview center">
                         @for (int i = 0; i < Model.PhotosToInsert.Count; i++)
-                    {
+                        {
                             @Html.HiddenFor(m => Model.PhotosToInsert.ToList()[i].PhotoId, new { @Name = "PhotosToInsertIDs" })
 
                             // wyswietlanie wstawionych zdjęć
