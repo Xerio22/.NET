@@ -29,3 +29,8 @@
 .hidden {
     display: none;
 }
+
+#insert-photos-to-article {
+    float: none;
+    width: 100%;
+}
