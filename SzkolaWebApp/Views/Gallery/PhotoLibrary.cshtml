@@ -1,5 +1,4 @@
 ﻿@model SzkolaWebApp.Models.GalleryViewModel
-@using System.IO
 
 @{
     ViewBag.Title = "Galeria zdjęć";
@@ -42,7 +41,7 @@
                         <div class="caption">@Html.DisplayFor(modelItem => photo.FileName)</div>
                         @Html.ActionLink("Delete", "DeletePhoto", new { photoId = photo.PhotoId }, new { @Name = "delete-photo" })
 
-                        <img src="@Url.Content("~/Content/UploadedPhotos/" + photo.FileName)" />
+                        <img src="@Url.Content(photo.Link)" />
                         
                         <input type="checkbox" id="PhotosToInsertIDs" name="PhotosToInsertIDs" value="@photo.PhotoId" class="hidden" 
                             @if (Model.PhotosInArticle != null && Model.PhotosInArticle.Contains(photo))

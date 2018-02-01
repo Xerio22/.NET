@@ -297,11 +297,6 @@
     <Content Include="Views\Home\_AddArticlePartial.cshtml" />
     <Content Include="Views\Home\_EditArticlePartial.cshtml" />
     <Content Include="Views\Gallery\PhotoLibrary.cshtml" />
-    <Content Include="Views\Home\AddParagraphToPage.cshtml" />
-    <Content Include="Views\Home\Page1.cshtml" />
-    <Content Include="Views\Home\Page2.cshtml" />
-    <Content Include="Views\Home\AddParagraph.cshtml" />
-    <Content Include="Views\Home\ShowParagraphs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

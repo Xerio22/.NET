@@ -1,4 +1,5 @@
 ﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -121,7 +122,12 @@ namespace SzkolaWebApp.Controllers
 
             // Save file in server's storage and put link to it in database
             file.SaveAs(path);
-            _context.Photos.Add(new Photo() { Link = path, FileName = fileName });
+            _context.Photos.Add(
+                new Photo() {
+                    Link = Path.Combine(pathToPhotosStorage, fileName), // relative path
+                    FileName = fileName
+                }
+            );
             _context.SaveChanges();
         }
 
@@ -130,13 +136,13 @@ namespace SzkolaWebApp.Controllers
         {
             var photoToDelete = _context.Photos.First(p => p.PhotoId == photoId);
 
-            
-                photoToDelete.Articles.ForEach(art => art.Photos.Remove(art.Photos.First(ph => ph.PhotoId == photoToDelete.PhotoId)));
-                _context.Photos.Remove(photoToDelete);
-                _context.SaveChanges();
+            // Delete photo from each article it belongs to
+            photoToDelete.Articles.ForEach(art => art.Photos.Remove(art.Photos.First(ph => ph.PhotoId == photoToDelete.PhotoId)));
+            _context.Photos.Remove(photoToDelete);
+            _context.SaveChanges();
 
-                System.IO.File.Delete(photoToDelete.Link);
-            
+            // delete physically
+            System.IO.File.Delete(Server.MapPath(photoToDelete.Link));
 
             return RedirectToAction("PhotoLibrary");
         }
